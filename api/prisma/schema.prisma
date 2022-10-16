@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  answer     String
+  questionId Int
+  best       Boolean? @default(false)
+  avaliation Int?     @default(0)
+  question   Question @relation(fields: [questionId], references: [id], map: "Ansewr_questionId_fkey")
+  user       User     @relation(fields: [userId], references: [id], map: "Ansewr_userId_fkey")
+
+  @@index([questionId], map: "Ansewr_questionId_fkey")
+  @@index([userId], map: "Ansewr_userId_fkey")
+}
+
+model Question {
+  id       Int      @id @default(autoincrement())
+  userId   Int
+  typeId   Int
+  question String
+  resolved Boolean? @default(false)
+  type     Type     @relation(fields: [typeId], references: [id], map: "Question_typeId_fkey")
+  user     User     @relation(fields: [userId], references: [id], map: "Question_userId_fkey")
+  Answer   Answer[]
+
+  @@index([typeId], map: "Question_typeId_fkey")
+  @@index([userId], map: "Question_userId_fkey")
+}
+
+model Type {
+  id       Int        @id @default(autoincrement())
+  name     String
+  question Question[]
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  name         String
+  registration String     @unique(map: "User_registration_key")
+  email        String     @unique(map: "User_email_key")
+  class        String
+  password     String
+  answer       Answer[]
+  question     Question[]
+}
