@@ -9,8 +9,5 @@ export class CreateQuestionDto {
     resolved?: boolean = false;
 
     @ApiProperty()
-    typeId: number;
-
-    @ApiProperty()
     userId: number;
 }

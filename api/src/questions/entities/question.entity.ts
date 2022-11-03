@@ -1,7 +1,7 @@
-import { Question } from "@prisma/client";
+import { Questions } from "@prisma/client";
 import { ApiProperty } from '@nestjs/swagger';
 
-export class QuestionEntity implements Question{
+export class QuestionEntity implements Questions{
     @ApiProperty()
     id: number;
 
@@ -12,8 +12,8 @@ export class QuestionEntity implements Question{
     resolved: boolean;
 
     @ApiProperty()
-    typeId: number;
+    userId: number;
 
     @ApiProperty()
-    userId: number;
+    creatAt: Date;
 }

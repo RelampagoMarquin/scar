@@ -8,25 +8,25 @@ export class TypesService {
   constructor(private prisma: PrismaService) {}
 
   create(createTypeDto: CreateTypeDto) {
-    return this.prisma.type.create({data: createTypeDto});
+    return this.prisma.types.create({data: createTypeDto});
   }
 
   findAll() {
-    return this.prisma.type.findMany();
+    return this.prisma.types.findMany();
   }
 
   findOne(id: number) {
-    return this.prisma.type.findUnique({ where: { id } });
+    return this.prisma.types.findUnique({ where: { id } });
   }
 
   update(id: number, updateTypeDto: UpdateTypeDto) {
-    return this.prisma.type.update({
+    return this.prisma.types.update({
       where: { id },
       data: updateTypeDto,
       });
   }
 
   remove(id: number) {
-    return this.prisma.type.delete({ where: { id } });
+    return this.prisma.types.delete({ where: { id } });
   }
 }

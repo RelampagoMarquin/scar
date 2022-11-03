@@ -72,8 +72,16 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 
-## Modulos
 
-criar modulos 
+## MODULES CREATE
 
+```bash
+# Comando apra criar modulo com API
 $ npx nest generate resource
+
+# Modulo Simples
+npx nest generate module prisma
+
+# Seviços do modulo
+npx nest generate service prisma
+```

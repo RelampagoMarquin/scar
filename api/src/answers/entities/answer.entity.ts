@@ -1,7 +1,7 @@
-import { Answer, User } from "@prisma/client";
+import { Answers, Users } from "@prisma/client";
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AnswerEntity implements Answer {
+export class AnswerEntity implements Answers {
     @ApiProperty()
     id: number;
 
@@ -19,6 +19,9 @@ export class AnswerEntity implements Answer {
 
     @ApiProperty()
     userId: number;
+
+    @ApiProperty()
+    creatAt: Date;
 
     /* também posso utilizar os objetos do prisma, basta importar
     @ApiProperty()

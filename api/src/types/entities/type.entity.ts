@@ -1,7 +1,7 @@
-import { Type } from "@prisma/client";
+import { Types } from "@prisma/client";
 import { ApiProperty } from '@nestjs/swagger';
 
-export class TypeEntity implements Type {
+export class TypeEntity implements Types {
     @ApiProperty()
     id: number;
 

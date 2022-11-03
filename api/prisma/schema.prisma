@@ -2,52 +2,96 @@ generator client {
   provider = "prisma-client-js"
 }
 
+///////////////////////
+/// Conexão com o banco
+///////////////////////
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model Answer {
-  id         Int      @id @default(autoincrement())
+///////////////////////
+/// Modelos
+///////////////////////
+model Answers {
+  id         Int       @id @default(autoincrement())
   userId     Int
-  answer     String
   questionId Int
-  best       Boolean? @default(false)
-  avaliation Int?     @default(0)
-  question   Question @relation(fields: [questionId], references: [id], map: "Ansewr_questionId_fkey")
-  user       User     @relation(fields: [userId], references: [id], map: "Ansewr_userId_fkey")
+  answer     String    @db.Text
+  best       Boolean?  @default(false)
+  avaliation Int?      @default(0)
+  creatAt    DateTime  @default(now())
+  question   Questions @relation(fields: [questionId], references: [id], map: "Ansewr_questionId_fkey")
+  user       Users     @relation(fields: [userId], references: [id], map: "Ansewr_userId_fkey")
+  Midias     Midias[]
 
   @@index([questionId], map: "Ansewr_questionId_fkey")
   @@index([userId], map: "Ansewr_userId_fkey")
 }
 
-model Question {
-  id       Int      @id @default(autoincrement())
-  userId   Int
-  typeId   Int
-  question String
-  resolved Boolean? @default(false)
-  type     Type     @relation(fields: [typeId], references: [id], map: "Question_typeId_fkey")
-  user     User     @relation(fields: [userId], references: [id], map: "Question_userId_fkey")
-  Answer   Answer[]
+model Questions {
+  id           Int            @id @default(autoincrement())
+  userId       Int
+  question     String         @db.Text
+  resolved     Boolean?       @default(false)
+  creatAt      DateTime       @default(now())
+  user         Users          @relation(fields: [userId], references: [id], map: "Question_userId_fkey")
+  Answer       Answers[]
+  Midias       Midias[]
+  Questiontags Questiontags[]
 
-  @@index([typeId], map: "Question_typeId_fkey")
   @@index([userId], map: "Question_userId_fkey")
 }
 
-model Type {
-  id       Int        @id @default(autoincrement())
-  name     String
-  question Question[]
+model Types {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(50)
+  Tags Tags[]
 }
 
-model User {
-  id           Int        @id @default(autoincrement())
-  name         String
-  registration String     @unique(map: "User_registration_key")
-  email        String     @unique(map: "User_email_key")
-  class        String
+model Users {
+  id           Int         @id @default(autoincrement())
+  name         String      @db.VarChar(50)
+  registration String      @unique(map: "User_registration_key") @db.VarChar(14)
+  email        String      @unique(map: "User_email_key")
+  class        String      @db.VarChar(10)
   password     String
-  answer       Answer[]
-  question     Question[]
+  answers      Answers[]
+  questions    Questions[]
+  favorites    Favorites[]
+}
+
+model Favorites {
+  id     Int   @id @default(autoincrement())
+  userId Int
+  tagId  Int
+  user   Users @relation(fields: [userId], references: [id])
+  tag    Tags  @relation(fields: [tagId], references: [id])
+}
+
+model Tags {
+  id           Int            @id @default(autoincrement())
+  typeId       Int
+  name         String         @db.VarChar(50)
+  type         Types          @relation(fields: [typeId], references: [id])
+  Favorites    Favorites[]
+  Questiontags Questiontags[]
+}
+
+model Midias {
+  id         Int        @id @default(autoincrement())
+  url        String
+  questionId Int?
+  answerId   Int?
+  answer    Answers?   @relation(fields: [answerId], references: [id])
+  question   Questions? @relation(fields: [questionId], references: [id])
+}
+
+model Questiontags {
+  id         Int       @id @default(autoincrement())
+  tagId      Int
+  questionId Int
+  tag        Tags      @relation(fields: [tagId], references: [id])
+  question   Questions @relation(fields: [questionId], references: [id])
 }

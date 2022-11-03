@@ -8,15 +8,15 @@ export class AnswersService {
   constructor(private prisma: PrismaService) {}
 
   create(createAnswerDto: CreateAnswerDto) {
-    return this.prisma.answer.create({data: createAnswerDto})
+    return this.prisma.answers.create({data: createAnswerDto})
   }
 
   findAll() {
-    return this.prisma.answer.findMany();
+    return this.prisma.answers.findMany();
   }
 
   findOne(id: number) {
-    return this.prisma.answer.findUnique({
+    return this.prisma.answers.findUnique({
       where: { id },
       include: {
         question: {}
@@ -25,13 +25,13 @@ export class AnswersService {
   }
 
   update(id: number, updateAnswerDto: UpdateAnswerDto) {
-    return this.prisma.answer.update({
+    return this.prisma.answers.update({
       where: {id},
       data: updateAnswerDto,
     });
   }
 
   remove(id: number) {
-    return this.prisma.answer.delete({ where: {id}});
+    return this.prisma.answers.delete({ where: {id}});
   }
 }
