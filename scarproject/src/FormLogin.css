@@ -7,7 +7,6 @@ body{
     max-width: 100vw;
     background-color: #18181B;
 }
-
 form{
     max-width: 600px;
     margin: 0 auto;
@@ -21,10 +20,7 @@ input,select, textarea, .radios,.checks{
 button{
     background-color: #68B92C;
 }
-
-
 .radios label, .checks label {
-
     margin-right: 20px;
 }
 label{
