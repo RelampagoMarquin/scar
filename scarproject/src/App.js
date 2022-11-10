@@ -1,14 +1,41 @@
-import './App.css';
-import FormCadastro from './FormCadastro';
-/* import FormLogin from './FormLogin'; */
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link
+}
+from "react-router-dom";
+import Home from "./components/pages/Home"
+import FormCadastro from "./components/pages/FormCadastro"
+import FormLogin from "./components/pages/FormLogin"
 
 function App() {
   return (
-    <div className="App">
-      <h1>SCAR</h1>
-      <FormCadastro />
-      {/* <FormLogin/> */}
-    </div>
+    <Router>
+
+      <div>
+          <Link to ="/">Home</Link>
+          <Link to ="/cadastro">Cadastrar</Link>
+          <Link to ="/login">Login</Link>
+      </div>
+
+      <Switch>
+
+        <Route exact path ="/">
+          <Home />
+        </Route>
+
+        <Route exact path ="/login">
+          <FormLogin/>
+        </Route>
+
+        <Route exact path ="/cadastro">
+          <FormCadastro />
+        </Route>
+
+      </Switch>
+
+    </Router>
   );
 }
 

@@ -28,21 +28,24 @@ class FormLogin extends Component {
 
 
         return(
-            <section>
-                <h1>SCAR</h1>
-                <p>Faça seu login</p>
+            <main>
+                <div>
+                    <h1>SCAR</h1>
+                    <p>Faça seu login</p>
+                </div>
                 <form onSubmit={handleSubmit}>
-                        <label>
-                            <p>Email:</p>
-                            <input name="email" type='text' placeholder="email@escolar.ifrn.edu.br"/>
-                        </label>
-                        <label>
-                            <p>Senha:</p>
-                            <input name="senha" type='text' placeholder="***********"/>
-                        </label>
+                    <label>
+                        <p>Email:</p>
+                        <input name="email" type='text' placeholder="email@escolar.ifrn.edu.br"/>
+                    </label>
+                    <label>
+                        <p>Senha:</p>
+                        <input name="senha" type='text' placeholder="***********"/>
+                    </label>
                     <button type="submit">Logar</button>   
                 </form>
-            </section>
+                <a>Ainda não possui uma conta? Crie uma!</a>
+            </main>
         )
     }
 }
