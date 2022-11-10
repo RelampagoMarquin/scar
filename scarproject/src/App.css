@@ -1,3 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+:root{
+  font-size: 62.5%;
+}
+body{
+  font-size: 2rem;
+}
 .App {
   text-align: center;
 }
@@ -5,6 +15,14 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+ul{
+   display: flex;
+   gap: 40px;
+}
+li{
+  list-style: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
