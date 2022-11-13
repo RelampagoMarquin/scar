@@ -1,5 +1,5 @@
 import React , { Component } from "react";
-import './FormLogin.css';
+import './Form.css';
 
 class FormLogin extends Component {
 
@@ -10,7 +10,7 @@ class FormLogin extends Component {
         this.state = {
 
             email: '',
-            senha: ''
+            password: ''
 
         }
 
@@ -40,7 +40,7 @@ class FormLogin extends Component {
                     </label>
                     <label>
                         <p>Senha:</p>
-                        <input name="senha" type='text' placeholder="***********"/>
+                        <input name="password" type='text' placeholder="***********"/>
                     </label>
                     <button type="submit">Logar</button>   
                 </form>
