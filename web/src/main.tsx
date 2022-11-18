@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Cadastro from './pages/FormCadastro'
+import Login from './pages/FormLogin'
 import './index.css'
 import './pages/Form.css'
 
