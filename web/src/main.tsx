@@ -7,6 +7,6 @@ import './pages/Form.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Cadastro />
+    <Login />
   </React.StrictMode>
 )

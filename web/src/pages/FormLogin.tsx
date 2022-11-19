@@ -4,6 +4,11 @@ import './Form.css';
 
 import axios from "axios";
 
+interface User{
+    password: string;
+    email: string;
+}
+
 
 export function handleLogin() {
 
