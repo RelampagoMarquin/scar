@@ -4,7 +4,15 @@ import './Form.css';
 
 import axios from "axios";
 
-interface User{
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    BrowserRouter
+  } from 'react-router-dom'
+
+interface User {
     name: string;
     password: string;
     email: string;
@@ -16,16 +24,16 @@ export function handleCadastro() {
 
     const [user, setuser] = useState<User>()
 
-    async function Cadastro(event:FormEvent) {
+    async function Cadastro(event: FormEvent) {
         event.preventDefault()
-        const formData = new FormData (event.target as HTMLFormElement) 
+        const formData = new FormData(event.target as HTMLFormElement)
         const data = Object.fromEntries(formData)
-        if (!data.name){
-            return 
+        if (!data.name) {
+            return
         }
         try {
             console.log(data)
-            axios.post ('http://localhost:3030/users', {
+            axios.post('http://localhost:3030/users', {
                 "name": data.name,
                 "registration": data.registration,
                 "email": data.email,
@@ -41,7 +49,7 @@ export function handleCadastro() {
     return (
 
         <main>
-            <div>
+            <div id='container-header'>
                 <h1>SCAR</h1>
                 <p id='P_cabecalho'>Faça seu Cadastro!</p>
                 <h2>Cadastre-se</h2>
@@ -71,7 +79,7 @@ export function handleCadastro() {
                 <button type="submit">Cadastrar</button>
 
             </form>
-            <a>Já possui uma conta? Logue já!</a>
+                <a>Já possui uma conta? Logue já!</a>
         </main>
     )
 }

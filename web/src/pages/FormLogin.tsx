@@ -4,30 +4,48 @@ import './Form.css';
 
 import axios from "axios";
 
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    BrowserRouter
+  } from 'react-router-dom'
+
+interface User {
+
+    password: string;
+    email: string;
+
+}
 
 export function handleLogin() {
 
-    async function Login() {
+    const [user, setuser] = useState<User>()
 
-        useEffect(()=> {
+    async function Login(event: FormEvent) {
+        event.preventDefault()
+        const formData = new FormData(event.target as HTMLFormElement)
+        const data = Object.fromEntries(formData)
+        if (!data.name) {
+            return
+        }
+        try {
+            console.log(data)
+            axios.post('http://localhost:3030/users', {
 
-            axios.get("http://localhost:3030/users")
-            .then(()=>{
-        
-                console.log('Deu Certo!')
-        
+                "email": data.email,
+                "password": data.password
+
             })
-        
-            .catch (()=>{
-        
-                ('Não foi')
-        
-            })
-        
-            }, [])
-        
+        } catch (error) {
+            console.log(error)
+            alert('Erro')
+        }
     }
-    return(
+
+    return (
+
         <main>
             <div>
                 <h1>SCAR</h1>
@@ -36,19 +54,17 @@ export function handleLogin() {
             <form onSubmit={Login}>
                 <label>
                     <p>Email:</p>
-                    <input name="email" type='text' placeholder="email@escolar.ifrn.edu.br"/>
+                    <input name="email" type='text' placeholder="email@escolar.ifrn.edu.br" />
                 </label>
                 <label>
                     <p>Senha:</p>
-                    <input name="senha" type='text' placeholder="***********"/>
+                    <input name="password" type='text' placeholder="***********" />
                 </label>
-                <button type="submit">Logar</button>   
+                <button type="submit">Logar</button>
             </form>
             <a>Ainda não possui uma conta? Crie uma!</a>
         </main>
     )
 }
-
-
 
 export default handleLogin
