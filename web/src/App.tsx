@@ -1,29 +1,26 @@
 import Cadastro from './pages/FormCadastro'
 import Login from './pages/FormLogin'
 import Home from './pages/Home'
-import Navbar from './components/Navbar'
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from 'react-router-dom'
-
 export function App() {
 
   return (
-    <body>
+    <div>
       {/* Links */}
         
       {/*Rotas*/}
       <Router>
-        <Navbar />
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/Login' element={<Login/>} />
           <Route path='/Cadastro' element={<Cadastro/>} />
         </Routes>
       </Router>
-    </body>
+    </div>
 
 
 

@@ -1,16 +1,14 @@
 import React, { Component, FormEvent, useEffect, useReducer, useState, useSyncExternalStore } from "react";
-
-import './Form.css';
-
+import '../Css/Forms.css';
 import axios from "axios";
-
+import Logo from '../components/Layout/Logo'
 import {
     BrowserRouter as Router,
     Routes,
     Route,
     Link,
     BrowserRouter
-  } from 'react-router-dom'
+} from 'react-router-dom'
 
 interface User {
 
@@ -45,25 +43,26 @@ export function handleLogin() {
     }
 
     return (
-
-        <main>
-            <div>
-                <h1>SCAR</h1>
-                <p>Faça seu login</p>
-            </div>
-            <form onSubmit={Login}>
-                <label>
-                    <p>Email:</p>
-                    <input name="email" type='text' placeholder="email@escolar.ifrn.edu.br" />
-                </label>
-                <label>
-                    <p>Senha:</p>
-                    <input name="password" type='text' placeholder="***********" />
-                </label>
-                <button type="submit">Logar</button>
-            </form>
-            <a>Ainda não possui uma conta? Crie uma!</a>
-        </main>
+        <div>
+            <main>
+                <div>
+                    <Logo />
+                    <p>Faça seu login</p>
+                </div>
+                <form onSubmit={Login}>
+                    <label>
+                        <p>Email:</p>
+                        <input name="email" type='text' placeholder="email@escolar.ifrn.edu.br" />
+                    </label>
+                    <label>
+                        <p>Senha:</p>
+                        <input name="password" type='password' placeholder="***********" />
+                    </label>
+                    <button type="submit">Logar</button>
+                </form>
+                <Link to='/Cadastro'>Ainda não possui uma conta? Crie uma!</Link>
+            </main>
+        </div>
     )
 }
 

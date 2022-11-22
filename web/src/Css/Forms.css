@@ -10,7 +10,6 @@
 
 /* Estilos: */
 body {
-    max-width: 699px;
     min-width: 355px;
     background-color: #1E1E1E;
     color: white;
@@ -36,6 +35,7 @@ h2{
 }
 form {
     display: flex;
+    width: 300px;
     margin: 0 auto;
     flex-direction: column;
     text-align: left;
@@ -50,6 +50,7 @@ p {
 }
 input{
     max-width: 100%;
+    min-width: 100%;
     background-color: #3F3F46;
     outline: none;
     height: 40px;
@@ -60,16 +61,19 @@ button{
 }
 label,
 button {
-    max-width: 400px;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
 @media (min-width: 700px) {
+    body{
+        max-width: 100%;
+    }
     form {
         margin: 0 auto;
+        align-items: center;
     }
-
+    
     input,button {
         width: 400px;
         margin-top: 2rem;

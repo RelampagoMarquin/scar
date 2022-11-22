@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body{
+    min-width: 370px;
+}
+/* Estilização do header */
+header#HomeHeader {
+    width: 100%;
+    padding: 0 2rem;
+    background-color: #181818;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilização Navbar.tsx */
+ul#navList {
+    display: flex;
+    list-style: none;
+}
+
+ul#navList>li {
+    padding: 0 20px;
+}
+
+ul#navList li:first-of-type {
+    border-right: 1px solid;
+    border-color: #BEF264;
+}
+
+ul#navList>li>a:visited,a:active,a:link {
+    color: #BEF264;
+}
+ul#navList>li>a:hover{
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Estilização Logo.tsx */
+img#LogoIMG {
+    margin: 25px;
+    height: 6rem;
+}
+
+/* Estilização do Main da Home responsivo */
+main#MainHomeContainer {
+    margin: 2rem;
+    text-align: center;
+}
+h3#Title-h3{
+    font-size: 4rem;
+    text-align: center;
+}
+h2#TitleWeb {
+    display: none;
+}
+
+img#HomeIMG {
+    margin: 0 auto;
+    
+    min-width: 300px;
+    max-width: 60%;
+}
+
+/* Estilização do Footer.tsx responsivo*/
+div#FooterContainer {
+    height: 130px;
+    color: white;
+    background-color: #68B92C;
+}
+
+div#FooterContainer ul {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+div#FooterContainer li {
+    list-style: none;
+}
+
+@media (min-width: 850px) {
+    /* Estilização do header do home web */
+    header#HomeHeader{
+        padding: 0 5rem;
+    }
+
+    /* Estilização da Main da Home Web */
+    main#MainHomeContainer {  
+        margin: 5rem 5rem 10rem;
+        display: flex;
+        text-align: start;
+        gap: 50px;
+        flex-direction: row;
+    }
+    
+    h2#TitleWeb {
+        display: block;
+    }
+
+    h2#TitleMobile {
+        display: none;
+    }
+    main#MainHomeContainer>div{
+        width: 50%;
+    }
+    main#MainHomeContainer>div>h2 {
+        font-size: 5rem;
+    }
+
+    main#MainHomeContainer>div>p {
+        text-align: center;
+    }
+
+    img#HomeIMG {
+        min-height: 300px;
+        max-height: max-content;
+    }
+    /* Estilização do Footer.tsx Web */
+    div#FooterContainer ul {
+        padding: 0 100px;
+    }
+}

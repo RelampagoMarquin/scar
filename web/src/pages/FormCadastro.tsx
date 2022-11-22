@@ -1,7 +1,6 @@
 import React, { Component, FormEvent, useEffect, useReducer, useState, useSyncExternalStore } from "react";
-
-import './Form.css';
-
+import '../Css/Forms.css';
+import Logo from '../components/Layout/Logo'
 import axios from "axios";
 
 import {
@@ -10,7 +9,7 @@ import {
     Route,
     Link,
     BrowserRouter
-  } from 'react-router-dom'
+} from 'react-router-dom'
 
 interface User {
     name: string;
@@ -47,40 +46,41 @@ export function handleCadastro() {
     }
 
     return (
+        <div>
+            <main>
+                <div id='container-header'>
+                    <Logo />
+                    <p id='P_cabecalho'>Faça seu Cadastro!</p>
+                    <h2>Cadastre-se</h2>
+                </div>
 
-        <main>
-            <div id='container-header'>
-                <h1>SCAR</h1>
-                <p id='P_cabecalho'>Faça seu Cadastro!</p>
-                <h2>Cadastre-se</h2>
-            </div>
+                <form onSubmit={Cadastro}>
+                    <label>
+                        <p>Nome completo:</p>
+                        <input name="name" type="text" placeholder="Nome completo" required />
+                    </label>
+                    <label>
+                        <p>Email:</p>
+                        <input name="email" type='email' placeholder="email@escolar.ifrn.edu.br" required />
+                    </label>
+                    <label>
+                        <p>Senha:</p>
+                        <input name="password" type='password' placeholder="***********" required />
+                    </label>
+                    <label>
+                        <p>Curso:</p>
+                        <input name="class" type="text" placeholder="Insira seu curso" required />
+                    </label>
+                    <label>
+                        <p>Matricula:</p>
+                        <input name="registration" type="text" placeholder="Número de Matrícula" required />
+                    </label>
+                    <button type="submit">Cadastrar</button>
 
-            <form onSubmit={Cadastro}>
-                <label>
-                    <p>Nome completo:</p>
-                    <input name="name" type="text" placeholder="Nome completo" required />
-                </label>
-                <label>
-                    <p>Email:</p>
-                    <input name="email" type='email' placeholder="email@escolar.ifrn.edu.br" required />
-                </label>
-                <label>
-                    <p>Senha:</p>
-                    <input name="password" type='password' placeholder="***********" required />
-                </label>
-                <label>
-                    <p>Curso:</p>
-                    <input name="class" type="text" placeholder="Insira seu curso" required />
-                </label>
-                <label>
-                    <p>Matricula:</p>
-                    <input name="registration" type="text" placeholder="Número de Matrícula" required />
-                </label>
-                <button type="submit">Cadastrar</button>
-
-            </form>
-                <a>Já possui uma conta? Logue já!</a>
-        </main>
+                </form>
+                <Link to='/Login'>Já possui uma conta? Logue já!</Link>
+            </main>
+        </div>
     )
 }
 
