@@ -6,6 +6,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
+import './Css/Styles.css'
 export function App() {
 
   return (
@@ -16,8 +17,9 @@ export function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/Login' element={<Login/>} />
           <Route path='/Cadastro' element={<Cadastro/>} />
+          <Route path='/Login' element={<Login/>}/>
+          
         </Routes>
       </Router>
     </div>

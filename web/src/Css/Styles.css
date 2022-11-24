@@ -59,25 +59,24 @@ h2#TitleWeb {
 
 img#HomeIMG {
     margin: 0 auto;
-    
     min-width: 300px;
     max-width: 60%;
 }
 
 /* Estilização do Footer.tsx responsivo*/
-div#FooterContainer {
+div#footerElement {
     height: 130px;
     color: white;
     background-color: #68B92C;
 }
 
-div#FooterContainer ul {
+div#footerElement ul {
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
 }
 
-div#FooterContainer li {
+div#footerElement li {
     list-style: none;
 }
 
@@ -89,7 +88,7 @@ div#FooterContainer li {
 
     /* Estilização da Main da Home Web */
     main#MainHomeContainer {  
-        margin: 5rem 5rem 10rem;
+        margin:5rem 5rem 10rem;
         display: flex;
         text-align: start;
         gap: 50px;
@@ -98,16 +97,18 @@ div#FooterContainer li {
     
     h2#TitleWeb {
         display: block;
+        text-align: center;
     }
 
     h2#TitleMobile {
         display: none;
     }
+    
     main#MainHomeContainer>div{
         width: 50%;
     }
     main#MainHomeContainer>div>h2 {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     main#MainHomeContainer>div>p {
@@ -118,8 +119,16 @@ div#FooterContainer li {
         min-height: 300px;
         max-height: max-content;
     }
+
     /* Estilização do Footer.tsx Web */
-    div#FooterContainer ul {
-        padding: 0 100px;
+
+    footer#FooterContainer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    div#footerElement{
+        padding: 0 10rem;
     }
 }

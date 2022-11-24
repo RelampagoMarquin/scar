@@ -1,6 +1,6 @@
 function Rodape() {
     return (
-        <div id="FooterContainer">
+        <div id='footerElement'>
             <nav>
                 <ul>
                     <li>

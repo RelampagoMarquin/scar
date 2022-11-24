@@ -30,7 +30,7 @@ export function Home() {
                 <h2 id='TitleMobile'>Faça já o seu cadastro ou o seu login para acessar nosso site!</h2>
 
             </main>
-            <footer>
+            <footer id="FooterContainer">
                 <Rodape />
             </footer>
 
