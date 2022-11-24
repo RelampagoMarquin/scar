@@ -12,8 +12,9 @@ import {
 
 interface User {
 
+    Authorization: string;
     password: string;
-    email: string;
+    registration: string;
 
 }
 
@@ -25,15 +26,19 @@ export function handleLogin() {
         event.preventDefault()
         const formData = new FormData(event.target as HTMLFormElement)
         const data = Object.fromEntries(formData)
-        if (!data.name) {
+        if (!data.registration) {
             return
         }
         try {
-            console.log(data)
-            axios.post('http://localhost:3030/users', {
+            
+            axios.post('http://localhost:3030/login', {
 
-                "email": data.email,
+                "registration": data.registration,
                 "password": data.password
+
+            }).then(response => {
+                console.log(response.data.Authorization)
+                setuser(response.data.Authorization)
 
             })
         } catch (error) {
@@ -51,8 +56,8 @@ export function handleLogin() {
                 </div>
                 <form onSubmit={Login}>
                     <label>
-                        <p>Email:</p>
-                        <input name="email" type='text' placeholder="email@escolar.ifrn.edu.br" />
+                        <p>Matricula:</p>
+                        <input name="registration" type='text' placeholder="email@escolar.ifrn.edu.br" />
                     </label>
                     <label>
                         <p>Senha:</p>
