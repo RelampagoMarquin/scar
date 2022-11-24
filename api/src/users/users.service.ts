@@ -1,27 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { compare } from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserEntity } from './entities/user.entity';
 
+interface FormatLogin extends Partial<UserEntity> {
+  registration: string
+}
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   create(createUserDto: CreateUserDto) {
-    return this.prisma.users.create({ 
-      select: { 
+    return this.prisma.users.create({
+      select: {
         name: true,
         registration: true,
         class: true,
         email: true
       },
-      data: createUserDto });
+      data: createUserDto
+    });
   }
 
   findAll() {
     return this.prisma.users.findMany({
-      select: { 
+      select: {
         name: true,
         registration: true,
         class: true,
@@ -31,19 +38,26 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    return this.prisma.users.findUnique({ 
-      select: { 
+    return this.prisma.users.findUnique({
+      select: {
         name: true,
         registration: true,
         class: true,
         email: true
       },
-      where: { id } })
+      where: { id }
+    })
+  }
+
+  findByResistration(registration: string) {
+    return this.prisma.users.findUnique({
+      where: { registration }
+    })
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return this.prisma.users.update({
-      select: { 
+      select: {
         name: true,
         registration: true,
         class: true,
@@ -51,17 +65,49 @@ export class UsersService {
       },
       where: { id },
       data: updateUserDto,
-      });
+    });
   }
 
   remove(id: number) {
     return this.prisma.users.delete({
-      select: { 
+      select: {
         name: true,
         registration: true,
         class: true,
         email: true
       },
-       where: { id } });
+      where: { id }
+    });
+  }
+
+  //use by auth module to login user
+  async findByLogin({ registration, password }: LoginUserDto):
+    Promise<FormatLogin> {
+    const user = await this.prisma.users.findFirst({
+      where: { registration }
+    });
+
+    if (!user) {
+      throw new HttpException("invalid_credentials",
+        HttpStatus.UNAUTHORIZED);
+    }
+
+    // compare passwords
+    const areEqual = await compare(password, user.password);
+
+    if (!areEqual) {
+      throw new HttpException("invalid_credentials",
+        HttpStatus.UNAUTHORIZED);
+    }
+
+    const { password: p, ...rest } = user;
+    return rest;
+  }
+
+  //use by auth module to get user in database
+  async findByPayload({ registration }: any): Promise<any> {
+    return await this.prisma.users.findFirst({
+      where: { registration }
+    });
   }
 }
