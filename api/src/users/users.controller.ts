@@ -19,6 +19,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { yupCreateUserInput } from 'src/yup/users';
 import { UserEntity } from './entities/user.entity';
+import { PasswordCheckService, PasswordCheckStrength } from './utils/passwordcheck';
 
 @Controller('users')
 @ApiTags('users')
@@ -27,12 +28,25 @@ export class UsersController {
 
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
-  async create(@Body() createUserDto: CreateUserDto) {
-    const user = new UserEntity
-    const saltOrRounds = 10;
-    const password = await bcrypt.hash(createUserDto.password, saltOrRounds)
-    user.email = createUserDto.email
-    createUserDto.password = password
+  async create(@Body() createUserDto: CreateUserDto) {   
+    const pass = createUserDto.password 
+    const check = new PasswordCheckService().checkPasswordStrength(pass)
+
+    if(check === PasswordCheckStrength.Ok || check === PasswordCheckStrength.Strong){
+      const saltOrRounds = 10;
+      const password = await bcrypt.hash(pass, saltOrRounds)
+      createUserDto.password = password
+    }else{
+      throw new BadRequestException('Senha fraca')
+    }
+    
+    if (!createUserDto.email.includes('ifrn.edu.br')){
+      throw new BadRequestException('Email não pertence ao dominio do IFRN')
+    }
+
+    if(!(/^\d+$/.test(createUserDto.registration))){
+      throw new BadRequestException('Matricula invalida')
+    }
 
     // utiliza o yup para validar os dados
     const isValidInput = yupCreateUserInput.isValidSync(createUserDto)

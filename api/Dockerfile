@@ -1,6 +1,6 @@
 FROM node:16-alpine
 
-WORKDIR /web/
+WORKDIR /api/
 
 COPY ./*.json .
 

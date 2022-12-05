@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, ConflictException } from '@nestjs/common';
 import { compare } from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -14,16 +14,21 @@ interface FormatLogin extends Partial<UserEntity> {
 export class UsersService {
   constructor(private prisma: PrismaService) { }
 
-  create(createUserDto: CreateUserDto) {
-    return this.prisma.users.create({
-      select: {
-        name: true,
-        registration: true,
-        class: true,
-        email: true
-      },
-      data: createUserDto
-    });
+  async create(createUserDto: CreateUserDto) {
+     try {
+      const user = await this.prisma.users.create({
+        select: {
+          name: true,
+          registration: true,
+          class: true,
+          email: true
+        },
+        data: createUserDto
+      });
+      return user
+     } catch (error) {
+      throw new ConflictException('Usuário já cadastrado')
+     }
   }
 
   findAll() {

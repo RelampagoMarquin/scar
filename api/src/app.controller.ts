@@ -19,7 +19,7 @@ export class AppController {
   @ApiSecurity('access-key')
   @UseInterceptors(ClassSerializerInterceptor)
   @Get('me')
-  async login(@Request() req) {
+  async me(@Request() req) {
     return this.authService.validateUser(req.user);
   }
 
