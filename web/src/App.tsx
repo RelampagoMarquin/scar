@@ -1,50 +1,26 @@
-import Cadastro from './pages/FormCadastro'
-import Login from './pages/FormLogin'
-import Home from './pages/Home'
+import Cadastro from './pages/formCadastro'
+import Login from './pages/formLogin'
+import Home from './pages/home'
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from 'react-router-dom'
 import './Css/Styles.css'
+
 export function App() {
 
   return (
     <div>
-      {/* Links */}
-        
       {/*Rotas*/}
-      <Router>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/Cadastro' element={<Cadastro/>} />
-          <Route path='/Login' element={<Login/>}/>
-          
-        </Routes>
-      </Router>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/Cadastro' element={<Cadastro />} />
+            <Route path='/Login' element={<Login />} />
+          </Routes>
+        </Router>
     </div>
-
-
-
-    /* <Router>
-      <Route>
-        <Link to='/Home'>Home</Link>
-        <Link to='/FormLogin'>Login</Link>
-        <Link to='/FormCadastro'>Cadastro</Link>
-      </Route>
-
-      <Routes>
-        <Route path='/Home'>
-          <Home />
-        </Route>
-        <Route path='/FormCadastro'>
-          <Cadastro />
-        </Route>
-        <Route path='/FormLogin'>
-          <Login />
-        </Route>
-      </Routes>
-    </Router> */
   )
 }
 

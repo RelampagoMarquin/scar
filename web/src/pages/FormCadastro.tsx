@@ -1,6 +1,6 @@
 import React, { Component, FormEvent, useEffect, useReducer, useState, useSyncExternalStore } from "react";
 import '../Css/Forms.css';
-import Logo from '../components/Layout/Logo'
+import Logo from '../components/layout/Logo'
 import axios from "axios";
 
 import {
