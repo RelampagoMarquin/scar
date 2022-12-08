@@ -193,6 +193,62 @@ div.botoes > button{
         border-radius: .6rem;
 
     }
+    .pergunta{
+
+        margin-top: 2rem;
+        background-color: #18181B;
+        width: 60%;
+        padding: 3rem;
+        border-radius: .6rem;
+
+    }
+
+    div.box{
+
+        background-color: #363636;
+        
+    }
+    div.partecima{
+
+        display: flex;
+
+    }
+    div.partebaixo{
+        justify-content: space-between;
+    }
+    div.texto{
+
+        background-color: #444444;
+        border-radius: 1rem;
+        margin: 2rem;
+
+    }
+
+
+    button#diciplinas{
+        background-color: #363636;
+        border-style:solid;
+        border-width:2px;
+        border-color: #68B92C;
+        font-size: 1.4rem;
+        height: 3rem;
+        border-radius: 15rem;
+    }
+
+    button#responder{
+        background-color: #68B92C;
+        font-size: 1.4rem;
+        height: 3rem;
+        border-radius: 15rem;
+    }
+
+
+    #perfil{
+
+        width: 5rem;
+
+    }
+
     #MainInicioContainer{
 
         justify-content: center;
@@ -210,6 +266,9 @@ div.botoes > button{
     .botoes > button{
 
         letter-spacing: 2px;
+    }
+    button#enviar{
+        background-color: #68B92C;
     }
 
 
