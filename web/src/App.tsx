@@ -7,14 +7,17 @@ import {
   Route
 } from 'react-router-dom'
 import './Css/Styles.css'
+<<<<<<< HEAD
 import TelaInicial from './pages/TelaInicial'
+=======
+
+>>>>>>> 2278e36ea072c844a9f29c823534c0ee18e50e02
 export function App() {
 
   return (
     <div>
-      {/* Links */}
-        
       {/*Rotas*/}
+<<<<<<< HEAD
       <Router>
         <Routes>
           <Route path='/' element={<Home/>} />
@@ -24,29 +27,16 @@ export function App() {
           
         </Routes>
       </Router>
+=======
+        <Router>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/Cadastro' element={<Cadastro />} />
+            <Route path='/Login' element={<Login />} />
+          </Routes>
+        </Router>
+>>>>>>> 2278e36ea072c844a9f29c823534c0ee18e50e02
     </div>
-
-
-
-    /* <Router>
-      <Route>
-        <Link to='/Home'>Home</Link>
-        <Link to='/FormLogin'>Login</Link>
-        <Link to='/FormCadastro'>Cadastro</Link>
-      </Route>
-
-      <Routes>
-        <Route path='/Home'>
-          <Home />
-        </Route>
-        <Route path='/FormCadastro'>
-          <Cadastro />
-        </Route>
-        <Route path='/FormLogin'>
-          <Login />
-        </Route>
-      </Routes>
-    </Router> */
   )
 }
 

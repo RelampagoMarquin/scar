@@ -1,12 +1,5 @@
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link,
-    BrowserRouter
-} from 'react-router-dom'
 import Logo from '../components/Layout/Logo'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/events/navbar'
 import Rodape from '../components/Layout/Footer'
 import '../Css/Styles.css'
 import Estudantes from '../Img/Students-pana1.svg'

@@ -6,7 +6,6 @@ import {
     BrowserRouter
 } from 'react-router-dom'
 import Logo from '../components/Layout/Logo'
-import Navbar from '../components/Navbar'
 import Rodape from '../components/Layout/Footer'
 import '../Css/Styles.css'
 import Pesquisa from '../Img/searchicon.svg'

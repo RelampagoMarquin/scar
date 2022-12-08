@@ -5,7 +5,9 @@ import {
     Link,
     BrowserRouter
   } from 'react-router-dom'
-import '../Css/Styles.css'
+import '../../Css/Styles.css'
+
+
 export function Navbar(){
 
     return(
