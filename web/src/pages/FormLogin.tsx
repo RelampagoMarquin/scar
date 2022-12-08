@@ -4,10 +4,7 @@ import axios from "axios";
 import Logo from '../components/Layout/Logo'
 import {
     BrowserRouter as Router,
-    Routes,
-    Route,
     Link,
-    BrowserRouter
 } from 'react-router-dom'
 
 interface User {
@@ -87,13 +84,13 @@ export function handleLogin() {
                 <form onSubmit={Login}>
                     <label>
                         <p>Matricula:</p>
-                        <input name="registration" type='text' placeholder="exemplo: 202010610800" />
+                        <input  className='campoformulario' name="registration" type='text' placeholder="exemplo: 202010610800" required/>
                     </label>
                     <label>
                         <p>Senha:</p>
-                        <input name="password" type='password' placeholder="***********" />
+                        <input className='campoformulario' name="password" type='password' placeholder="***********" required/>
                     </label>
-                    <button type="submit">Logar</button>
+                    <button type="submit" className="submitformbutton">Logar</button>
                 </form>
                 <Link to='/Cadastro'>Ainda não possui uma conta? Crie uma!</Link>
             </main>

@@ -80,6 +80,48 @@ div#footerElement li {
     list-style: none;
 }
 
+/*estilizaçãp da telainicial.tsx*/
+
+div.botoes{
+    justify-content: space-between;
+}
+input.pergunta{
+    height: 15rem;
+}
+header#InicioHeader{
+    display: flex;
+    flex-direction: row;
+    gap: 12rem;
+}
+
+.button-seach{
+
+    background-color: #68B92C;
+    color: white;
+    padding: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 30px;
+    
+}
+header#InicioHeader>div{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    gap:8rem;
+    align-items: center;
+}
+textarea.pergunta{
+    color: #c3c3c3;
+    background-color: #363636;
+}
+div.botoes > button{
+    font-size: 1.4rem;
+    height: 3rem;
+    border-radius: 15rem;
+}
+
+
 @media (min-width: 850px) {
     /* Estilização do header do home web */
     header#HomeHeader{
@@ -137,11 +179,9 @@ div#footerElement li {
     #inicio > .search {
 
         background-color: white;
-        margin-left: 10rem;
         border-radius: 5rem;
         color: #7C7C8A;
         width: 55rem;
-        margin-bottom: 10rem ;
 
     }
 
@@ -149,7 +189,7 @@ div#footerElement li {
 
         background-color: #18181B;
         width: 60%;
-        padding: 5rem;
+        padding: 3rem;
 
     }
     #MainInicioContainer{
@@ -161,42 +201,22 @@ div#footerElement li {
 
     }
 
-    .pergunta{
-
-        padding: 2rem, 2rem, 2rem, 2rem;
-
-    }
-
     .botoes{
 
         display: flex;
     }
 
-    .button-seach{
 
-        margin-left: 12rem;
-        background-color: #68B92C;
-        color: white;
-        padding: 10px;
-        height: 40px;
-        width: 40px;
-        border-radius: 30px;
-        
-    }
-
-    
 
     #botaopesquisa{
 
         width: 10rem;
-        margin-bottom: 2rem;
 
     }
 
     #InicioHeader{
         background-color: #18181B;
         width: 100%;
-        height: 12rem;
     }
 
 }

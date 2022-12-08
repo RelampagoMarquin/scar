@@ -5,10 +5,7 @@ import axios from "axios";
 
 import {
     BrowserRouter as Router,
-    Routes,
-    Route,
     Link,
-    BrowserRouter
 } from 'react-router-dom'
 
 interface User {
@@ -57,25 +54,25 @@ export function handleCadastro() {
                 <form onSubmit={Cadastro}>
                     <label>
                         <p>Nome completo:</p>
-                        <input name="name" type="text" placeholder="Nome completo" required />
+                        <input className='campoformulario' name="name" type="text" placeholder="Nome completo" required />
                     </label>
                     <label>
                         <p>Email:</p>
-                        <input name="email" type='email' placeholder="email@escolar.ifrn.edu.br" required />
+                        <input className='campoformulario' name="email" type='email' placeholder="email@escolar.ifrn.edu.br" required />
                     </label>
                     <label>
                         <p>Senha:</p>
-                        <input name="password" type='password' placeholder="***********" required />
+                        <input className='campoformulario' name="password" type='password' placeholder="***********" required />
                     </label>
                     <label>
                         <p>Curso:</p>
-                        <input name="class" type="text" placeholder="Insira seu curso" required />
+                        <input className='campoformulario' name="class" type="text" placeholder="Insira seu curso" required />
                     </label>
                     <label>
                         <p>Matricula:</p>
-                        <input name="registration" type="text" placeholder="Número de Matrícula" required />
+                        <input  className='campoformulario' name="registration" type="text" placeholder="Número de Matrícula" required />
                     </label>
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" className='submitformbutton'>Cadastrar</button>
 
                 </form>
                 <Link to='/Login'>Já possui uma conta? Logue já!</Link>

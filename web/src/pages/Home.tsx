@@ -1,5 +1,5 @@
 import Logo from '../components/Layout/Logo'
-import Navbar from '../components/events/navbar'
+import Navbar from '../components/Layout/navbar'
 import Rodape from '../components/Layout/Footer'
 import '../Css/Styles.css'
 import Estudantes from '../Img/Students-pana1.svg'

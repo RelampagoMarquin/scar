@@ -468,8 +468,6 @@ input {
   font-family: inherit;
   font-size: inherit;
   margin-right: 6px;
-  margin-bottom: 6px;
-  padding: 10px;
   border: none;
   border-radius: 6px;
   outline: none;
@@ -498,7 +496,6 @@ button {
   background-color: var(--background);
   font-family: inherit;
   font-size: inherit;
-  padding: 10px;
   border: none;
   border-radius: 6px;
   outline: none;

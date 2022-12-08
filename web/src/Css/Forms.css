@@ -55,12 +55,12 @@ input{
     outline: none;
     height: 40px;
 }
-button{
+button.submitformbutton{
     color: white;
     font-weight: 600;
 }
 label,
-button {
+button.submitformbutton {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -74,7 +74,7 @@ button {
         align-items: center;
     }
     
-    input,button {
+    input.campoformulario,button.submitformbutton {
         width: 400px;
         margin-top: 2rem;
         margin-bottom: 1rem;
