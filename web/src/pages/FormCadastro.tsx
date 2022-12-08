@@ -39,7 +39,7 @@ export function handleCadastro() {
         } catch (error) {
             console.log(error)
             alert('Erro')
-        }
+        }alert('Cadastro feito');
     }
 
     return (
