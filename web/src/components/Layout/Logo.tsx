@@ -1,9 +1,6 @@
 import {
     BrowserRouter as Router,
-    Routes,
-    Route,
     Link,
-    BrowserRouter
   } from 'react-router-dom'
 import LogoIMG from '../../Img/ScarLogo1.svg'
 import '../../Css/Styles.css'

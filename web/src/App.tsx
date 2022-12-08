@@ -1,6 +1,6 @@
-import Cadastro from './pages/formCadastro'
-import Login from './pages/formLogin'
-import Home from './pages/home'
+import Cadastro from './pages/FormCadastro'
+import Login from './pages/FormLogin'
+import Home from './pages/Home'
 import {
   BrowserRouter as Router,
   Routes,

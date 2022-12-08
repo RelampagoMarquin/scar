@@ -1,7 +1,7 @@
 import React, { Component, FormEvent, useContext, useEffect, useReducer, useState, useSyncExternalStore } from "react";
 import '../Css/Forms.css';
 import axios from "axios";
-import Logo from '../components/layout/Logo'
+import Logo from '../components/Layout/Logo'
 import {
     BrowserRouter as Router,
     Routes,
