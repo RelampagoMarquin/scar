@@ -7,6 +7,7 @@ import {
   Route
 } from 'react-router-dom'
 import './Css/Styles.css'
+import TelaInicial from './pages/TelaInicial'
 export function App() {
 
   return (
@@ -19,6 +20,7 @@ export function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/Cadastro' element={<Cadastro/>} />
           <Route path='/Login' element={<Login/>}/>
+          <Route path='/Inicio' element={<TelaInicial/>}/>
           
         </Routes>
       </Router>
