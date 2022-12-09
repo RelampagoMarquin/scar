@@ -21,7 +21,7 @@ export function TelaInicial() {
                 <Logo />
                 <div>
                     <div id='inicio'>
-                        <input className='search' name="search" type='search' placeholder="Pesquise já!" />
+                        <input className='search' name="search" type='search' placeholder="Pesquise já!" id='search'/>
                     </div>
                     <button className='button-seach'><img src={Pesquisa} id='botaopesquisa' /></button>
                 </div>

@@ -115,6 +115,9 @@ textarea.pergunta{
     color: #c3c3c3;
     background-color: #363636;
 }
+input#search{
+    padding-left: 15px;
+}
 div.botoes > button{
     font-size: 1.4rem;
     height: 3rem;
@@ -198,7 +201,7 @@ div.botoes > button{
         margin-top: 2rem;
         background-color: #18181B;
         width: 60%;
-        padding: 3rem;
+        padding: 2rem;
         border-radius: .6rem;
 
     }

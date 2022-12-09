@@ -71,7 +71,7 @@ export function handleLogin() {
         } catch (error) {
             console.log(error)
             alert('Erro')
-        }alert("Login Efetuado");
+        };
     }
 
     return (
