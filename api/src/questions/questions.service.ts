@@ -7,11 +7,11 @@ import { UpdateQuestionDto } from './dto/update-question.dto';
 export class QuestionsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createQuestionDto: CreateQuestionDto) {
+  async create(createQuestionDto: CreateQuestionDto) {
     return this.prisma.questions.create({data: createQuestionDto});
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.questions.findMany({
       //include é utilizado para fazer buscas em mais de uma tabela
       include: {
@@ -20,18 +20,18 @@ export class QuestionsService {
     });
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.prisma.questions.findUnique({ where: { id } });
   }
 
-  update(id: number, updateQuestionDto: UpdateQuestionDto) {
+  async update(id: number, updateQuestionDto: UpdateQuestionDto) {
     return this.prisma.questions.update({
       where: { id },
       data: updateQuestionDto,
       });
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.prisma.questions.delete({ where: { id } });
   }
 }

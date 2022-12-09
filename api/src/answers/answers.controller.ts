@@ -25,7 +25,7 @@ export class AnswersController {
 
   @Post()
   @ApiCreatedResponse({ type: AnswerEntity})
-  create(@Body() createAnswerDto: CreateAnswerDto) {
+  async create(@Body() createAnswerDto: CreateAnswerDto) {
     // utiliza o yup para validar os dados
     const isValidInput = yupCreateAnswersInput.isValidSync(createAnswerDto)
 
@@ -38,19 +38,19 @@ export class AnswersController {
 
   @Get()
   @ApiOkResponse({ type: AnswerEntity, isArray: true})
-  findAll() {
+  async findAll() {
     return this.answersService.findAll();
   }
 
   @Get(':id')
   @ApiOkResponse({ type: AnswerEntity})
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.answersService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: AnswerEntity})
-  update(@Param('id') id: string, @Body() updateAnswerDto: UpdateAnswerDto) {
+  async update(@Param('id') id: string, @Body() updateAnswerDto: UpdateAnswerDto) {
     const isValidInput = yupCreateAnswersInput.isValidSync(updateAnswerDto)
 
     if(!isValidInput){
@@ -62,7 +62,7 @@ export class AnswersController {
 
   @Delete(':id')
   @ApiOkResponse({ type: AnswerEntity})
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.answersService.remove(+id);
   }
 }

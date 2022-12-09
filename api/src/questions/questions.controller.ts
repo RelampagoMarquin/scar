@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+   Controller, 
+   Get, 
+   Post, 
+   Body, 
+   Patch, 
+   Param, 
+   Delete, 
+   BadRequestException,
+ } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
@@ -8,6 +17,7 @@ import {
   ApiTags 
 } from '@nestjs/swagger';
 import { QuestionEntity } from './entities/question.entity';
+import { yupCreateQuestionInput } from 'src/yup/questions';
 
 @Controller('questions')
 @ApiTags('questions')
@@ -16,31 +26,43 @@ export class QuestionsController {
 
   @Post()
   @ApiCreatedResponse({ type: QuestionEntity})
-  create(@Body() createQuestionDto: CreateQuestionDto) {
+  async create(@Body() createQuestionDto: CreateQuestionDto) {
+    const isValidInput = yupCreateQuestionInput.isValidSync(createQuestionDto)
+
+    if(!isValidInput){
+      throw new BadRequestException('Seu input está inválido')
+    }
+
     return this.questionsService.create(createQuestionDto);
   }
 
   @Get()
   @ApiOkResponse({ type: QuestionEntity, isArray: true})
-  findAll() {
+  async findAll() {
     return this.questionsService.findAll();
   }
 
   @Get(':id')
   @ApiOkResponse({ type: QuestionEntity})
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.questionsService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: QuestionEntity})
-  update(@Param('id') id: string, @Body() updateQuestionDto: UpdateQuestionDto) {
+  async update(@Param('id') id: string, @Body() updateQuestionDto: UpdateQuestionDto) {
+    const isValidInput = yupCreateQuestionInput.isValidSync(updateQuestionDto)
+
+    if(!isValidInput){
+      throw new BadRequestException('Seu input está inválido')
+    }
+
     return this.questionsService.update(+id, updateQuestionDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: QuestionEntity})
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.questionsService.remove(+id);
   }
 }

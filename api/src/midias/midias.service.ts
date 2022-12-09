@@ -7,26 +7,26 @@ import { UpdateMidiaDto } from './dto/update-midia.dto';
 export class MidiasService {
   constructor(private prisma: PrismaService) {}
 
-  create(createMidiaDto: CreateMidiaDto) {
+  async create(createMidiaDto: CreateMidiaDto) {
     return this.prisma.midias.create({data: createMidiaDto});
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.midias.findMany();
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.prisma.midias.findUnique({ where: { id } });
   }
 
-  update(id: number, updateMidiaDto: UpdateMidiaDto) {
+  async update(id: number, updateMidiaDto: UpdateMidiaDto) {
     return this.prisma.midias.update({
       where: { id },
       data: updateMidiaDto,
     })
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.prisma.midias.delete({ where: { id }})
   }
 }

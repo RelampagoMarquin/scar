@@ -7,26 +7,26 @@ import { UpdateTagDto } from './dto/update-tag.dto';
 export class TagsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createTagDto: CreateTagDto) {
+  async create(createTagDto: CreateTagDto) {
     return this.prisma.tags.create({data: createTagDto});
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.tags.findMany();
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.prisma.tags.findUnique({where: { id }});
   }
 
-  update(id: number, updateTagDto: UpdateTagDto) {
+  async update(id: number, updateTagDto: UpdateTagDto) {
     return this.prisma.tags.update({
       where: { id },
       data: updateTagDto,
     })
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.prisma.tags.delete({ where: { id } })
   }
 }

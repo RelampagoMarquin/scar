@@ -1,9 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { 
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  BadRequestException,
+} from '@nestjs/common';
 import { MidiasService } from './midias.service';
 import { CreateMidiaDto } from './dto/create-midia.dto';
 import { UpdateMidiaDto } from './dto/update-midia.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { MidiaEntity } from './entities/midia.entity';
+import { yupCreateMidiasInput } from 'src/yup/midias';
 
 @Controller('midias')
 @ApiTags("midias")
@@ -12,31 +22,42 @@ export class MidiasController {
 
   @Post()
   @ApiCreatedResponse({type: MidiaEntity})
-  create(@Body() createMidiaDto: CreateMidiaDto) {
+  async create(@Body() createMidiaDto: CreateMidiaDto) {
+    const isValidInput = yupCreateMidiasInput.isValidSync(createMidiaDto)
+    if (!isValidInput) {
+      throw new BadRequestException('Seu input está inválido')
+    }
+
     return this.midiasService.create(createMidiaDto);
   }
 
   @Get()
   @ApiOkResponse({type: MidiaEntity, isArray: true})
-  findAll() {
+  async findAll() {
     return this.midiasService.findAll();
   }
 
   @Get(':id')
   @ApiOkResponse({type: MidiaEntity})
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.midiasService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({type: MidiaEntity})
-  update(@Param('id') id: string, @Body() updateMidiaDto: UpdateMidiaDto) {
+  async update(@Param('id') id: string, @Body() updateMidiaDto: UpdateMidiaDto) {
+    const isValidInput = yupCreateMidiasInput.isValidSync(updateMidiaDto)
+
+    if (!isValidInput) {
+      throw new BadRequestException('Seu input está inválido')
+    }
+
     return this.midiasService.update(+id, updateMidiaDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({type: MidiaEntity})
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.midiasService.remove(+id);
   }
 }

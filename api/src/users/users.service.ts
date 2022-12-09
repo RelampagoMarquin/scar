@@ -1,4 +1,8 @@
-import { HttpException, HttpStatus, Injectable, ConflictException } from '@nestjs/common';
+import { 
+  HttpException, 
+  HttpStatus, 
+  Injectable 
+} from '@nestjs/common';
 import { compare } from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -15,9 +19,9 @@ export class UsersService {
   constructor(private prisma: PrismaService) { }
 
   async create(createUserDto: CreateUserDto) {
-     try {
       const user = await this.prisma.users.create({
         select: {
+          id: true,
           name: true,
           registration: true,
           class: true,
@@ -26,14 +30,12 @@ export class UsersService {
         data: createUserDto
       });
       return user
-     } catch (error) {
-      throw new ConflictException('Usuário já cadastrado')
-     }
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.users.findMany({
       select: {
+        id: true,
         name: true,
         registration: true,
         class: true,
@@ -42,9 +44,10 @@ export class UsersService {
     });
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.prisma.users.findUnique({
       select: {
+        id: true,
         name: true,
         registration: true,
         class: true,
@@ -54,15 +57,22 @@ export class UsersService {
     })
   }
 
-  findByResistration(registration: string) {
+  async findByResistration(registration: string) {
     return this.prisma.users.findUnique({
       where: { registration }
     })
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  async findByEmail(email: string) {
+    return this.prisma.users.findUnique({
+      where: { email }
+    })
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto) {
     return this.prisma.users.update({
       select: {
+        id: true,
         name: true,
         registration: true,
         class: true,
@@ -73,9 +83,10 @@ export class UsersService {
     });
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.prisma.users.delete({
       select: {
+        id: true,
         name: true,
         registration: true,
         class: true,

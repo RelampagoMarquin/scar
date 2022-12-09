@@ -26,7 +26,7 @@ export class TypesController {
 
   @Post()
   @ApiCreatedResponse({ type: TypeEntity})
-  create(@Body() createTypeDto: CreateTypeDto) {
+  async create(@Body() createTypeDto: CreateTypeDto) {
     // utiliza o yup para validar os dados
     const isValidInput = yupCreateTypeInput.isValidSync(createTypeDto)
 
@@ -39,19 +39,19 @@ export class TypesController {
 
   @Get()
   @ApiOkResponse({ type: TypeEntity, isArray: true})
-  findAll() {
+  async findAll() {
     return this.typesService.findAll();
   }
 
   @Get(':id')
   @ApiOkResponse({ type: TypeEntity})
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.typesService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: TypeEntity})
-  update(@Param('id') id: string, @Body() updateTypeDto: UpdateTypeDto) {
+  async update(@Param('id') id: string, @Body() updateTypeDto: UpdateTypeDto) {
     const isValidInput = yupCreateTypeInput.isValidSync(updateTypeDto)
 
     if(!isValidInput){
@@ -62,7 +62,7 @@ export class TypesController {
 
   @Delete(':id')
   @ApiOkResponse({ type: TypeEntity})
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.typesService.remove(+id);
   }
 }

@@ -7,15 +7,15 @@ import { UpdateAnswerDto } from './dto/update-answer.dto';
 export class AnswersService {
   constructor(private prisma: PrismaService) {}
 
-  create(createAnswerDto: CreateAnswerDto) {
+  async create(createAnswerDto: CreateAnswerDto) {
     return this.prisma.answers.create({data: createAnswerDto})
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.answers.findMany();
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.prisma.answers.findUnique({
       where: { id },
       include: {
@@ -24,14 +24,14 @@ export class AnswersService {
     });
   }
 
-  update(id: number, updateAnswerDto: UpdateAnswerDto) {
+  async update(id: number, updateAnswerDto: UpdateAnswerDto) {
     return this.prisma.answers.update({
       where: {id},
       data: updateAnswerDto,
     });
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.prisma.answers.delete({ where: {id}});
   }
 }

@@ -7,26 +7,26 @@ import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 export class FavoritesService {
   constructor(private prisma: PrismaService) {}
 
-  create(createFavoriteDto: CreateFavoriteDto) {
+  async create(createFavoriteDto: CreateFavoriteDto) {
     return this.prisma.favorites.create({data: createFavoriteDto});
   }
 
-  findAll() {
+  async findAll() {
     return this.prisma.favorites.findMany()
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.prisma.favorites.findUnique({where: { id }})
   }
 
-  update(id: number, updateFavoriteDto: UpdateFavoriteDto) {
+  async update(id: number, updateFavoriteDto: UpdateFavoriteDto) {
     return this.prisma.favorites.update({
       where: { id },
       data: updateFavoriteDto,
     })
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.prisma.favorites.delete({where: { id }})
   }
 }

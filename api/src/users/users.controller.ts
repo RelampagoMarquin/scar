@@ -7,6 +7,8 @@ import {
   Patch,
   Param,
   Delete,
+  ConflictException,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -19,7 +21,10 @@ import {
 import * as bcrypt from 'bcrypt';
 import { yupCreateUserInput } from 'src/yup/users';
 import { UserEntity } from './entities/user.entity';
-import { PasswordCheckService, PasswordCheckStrength } from './utils/passwordcheck';
+import { 
+  PasswordCheckService, 
+  PasswordCheckStrength 
+} from '../utils/passwordcheck';
 
 @Controller('users')
 @ApiTags('users')
@@ -55,18 +60,32 @@ export class UsersController {
       throw new BadRequestException('Seu input está inválido')
     }
 
-    return this.usersService.create(createUserDto);
+    const emailRegistred = await this.usersService.findByEmail(createUserDto.email)
+    const registrationResistred = await this.usersService.findByResistration(createUserDto.registration)
+    if(emailRegistred){
+      throw new ConflictException('Email já cadastrado')
+    }
+    if(registrationResistred){
+      throw new ConflictException('Matricula já cadastrada')
+    }
+
+    try {
+      return this.usersService.create(createUserDto);
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
+    
   }
 
   @Get()
   @ApiOkResponse({ type: UserEntity, isArray: true })
-  findAll() {
+  async findAll() {
     return this.usersService.findAll();
   }
 
   @Get(':id')
   @ApiOkResponse({ type: UserEntity })
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
 
@@ -89,7 +108,7 @@ export class UsersController {
 
   @Delete(':id')
   @ApiOkResponse({ type: UserEntity })
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
 

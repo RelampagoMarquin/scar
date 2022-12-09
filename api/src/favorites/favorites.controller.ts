@@ -1,9 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { 
+  Controller, 
+  Get, 
+  Post, 
+  Body, 
+  Patch, 
+  Param, 
+  Delete,
+  BadRequestException
+} from '@nestjs/common';
 import { FavoritesService } from './favorites.service';
 import { CreateFavoriteDto } from './dto/create-favorite.dto';
 import { UpdateFavoriteDto } from './dto/update-favorite.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { 
+  ApiCreatedResponse, 
+  ApiOkResponse, 
+  ApiTags 
+} from '@nestjs/swagger';
 import { FavoriteEntity } from './entities/favorite.entity';
+import { yupCreateFavoritesInput } from 'src/yup/favorites';
 
 @Controller('favorites')
 @ApiTags('favorites')
@@ -12,31 +26,40 @@ export class FavoritesController {
 
   @Post()
   @ApiCreatedResponse({type: FavoriteEntity})
-  create(@Body() createFavoriteDto: CreateFavoriteDto) {
+  async create(@Body() createFavoriteDto: CreateFavoriteDto) {
+    const isValidInput = yupCreateFavoritesInput.isValidSync(createFavoriteDto)
+    if (!isValidInput) {
+      throw new BadRequestException('Seu input está inválido')
+    }
+
     return this.favoritesService.create(createFavoriteDto);
   }
 
   @Get()
   @ApiOkResponse({type: FavoriteEntity, isArray: true})
-  findAll() {
+  async findAll() {
     return this.favoritesService.findAll();
   }
 
   @Get(':id')
   @ApiOkResponse({type: FavoriteEntity})
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.favoritesService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOkResponse({type: FavoriteEntity})
-  update(@Param('id') id: string, @Body() updateFavoriteDto: UpdateFavoriteDto) {
+  async update(@Param('id') id: string, @Body() updateFavoriteDto: UpdateFavoriteDto) {
+    const isValidInput = yupCreateFavoritesInput.isValidSync(updateFavoriteDto)
+    if (!isValidInput) {
+      throw new BadRequestException('Seu input está inválido')
+    }
     return this.favoritesService.update(+id, updateFavoriteDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({type: FavoriteEntity})
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.favoritesService.remove(+id);
   }
 }
