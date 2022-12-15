@@ -1,7 +1,7 @@
 import Cadastro from './pages/FormCadastro'
 import Login from './pages/FormLogin'
 import Home from './pages/Home'
-import TelaInicial from './pages/TelaInicial'
+import TelaInicial from './pages/Feed'
 import {
   BrowserRouter as Router,
   Routes,

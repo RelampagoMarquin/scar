@@ -11,7 +11,7 @@ import '../Css/Styles.css'
 import Pesquisa from '../Img/searchicon.svg'
 import Perfil from '../Img/perfil.svg'
 import CampoPesquisa from '../components/Layout/NavbarSearch'
-
+import Question from '../components/events/question/question'
 
 export function TelaInicial() {
 
@@ -28,16 +28,7 @@ export function TelaInicial() {
 
             </header>
             <main id='MainInicioContainer'>
-                <div className="caixaperguntas">
-
-                    <textarea className='pergunta' name="pergunta" placeholder="Faça sua pergunta aqui!" />
-
-                    <div className='botoes'>
-                        <button id='categorias'>Categorias</button>
-                        <button id='enviar' type='submit'>Enviar</button>
-                    </div>
-
-                </div>
+                <Question></Question>
                 <div className="pergunta">
 
                     <div className='box'>
