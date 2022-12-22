@@ -38,8 +38,6 @@ export function handleLogin() {
         const formData = new FormData(event.target as HTMLFormElement)
         const data = Object.fromEntries(formData)
         
-        
-        ////////////////////////////////////////////////////////////////////
         const response = await api.post('/login', {
             registratin: '2222',
             password: '123',

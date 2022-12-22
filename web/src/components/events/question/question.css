@@ -1,1 +1,4 @@
-/* Começar a criar estilos 'locais' para que não 'polua' o documento de estilos globais */
+textarea#AreaTexto{
+    margin: 0 auto;
+    width: 400px;
+}
