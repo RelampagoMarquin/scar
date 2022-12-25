@@ -3,7 +3,7 @@ import Logo from '../../components/Layout/Logo'
 import '../../Css/Styles.css'
 import '../feed/feed.css'
 import Question from '../../components/events/question/question'
-export function TelaInicial() {
+export function Feed() {
 
     return (
         <div id='containerFeed'>
@@ -26,4 +26,4 @@ export function TelaInicial() {
     )
 }
 
-export default TelaInicial;
+export default Feed;

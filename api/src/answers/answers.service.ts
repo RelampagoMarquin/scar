@@ -15,6 +15,15 @@ export class AnswersService {
     return this.prisma.answers.findMany();
   }
 
+  async findAllByQuestion(questionId: number) {
+    return this.prisma.answers.findMany({
+      where: {questionId},
+      include: {
+        Midias: {}
+      }
+    });
+  }
+
   async findOne(id: number) {
     return this.prisma.answers.findUnique({
       where: { id },
