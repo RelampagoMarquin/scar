@@ -1,39 +1,27 @@
-import { createElement, useState } from "react"
-import './question.css'
+import "./question.css"
+function Question() {
 
-
-
-export function handleQuestion() {
-
-    const [question, setQuestion] = useState('')
-
-    function handleSubmitQuestion (){
-        setQuestion ('')
-    }
 
     return (
-        <div id="containerAreaTexto">
-            <textarea id='AreaTexto' name="pergunta" value={question} placeholder="Faça sua pergunta aqui!" onChange={e => setQuestion(e.target.value)}/>
-            <div className='botoes'>
-               
-                <select>
-                    {/* Tentar deixar a primeira slecionada por padrão */}
-                    <option value=''disabled>categorias</option>
-                    <option value='portugues'>portugues</option>
-                    <option value='matematica'>matematica</option>
-                    <option value='geografia'>geografia</option>
-                    <option value='historia'>historia</option>
-                    <option value='fisica'>fisica</option>
-                    <option value='quimica'>quimica</option>
-                    <option value='filosofia'>filosofia</option>
-                    <option value='sociologia'>sociologia</option>
-                </select>
-
+        <div className="background">
+            <div className="infield">
+                <div className="header_question">
+                    {/* user */}
+                    <p>Cicrano</p>
+                    {/* tag pergunta */}
+                    <span id='tag'>Matemática</span>
+                </div>
+                <div className="question">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore eos omnis temporibus ipsam, perferendis, excepturi at ducimus error vitae quae expedita tempore, recusandae veniam assumenda quo quibusdam ab consequatur a.</p>
+                </div>
+                <div className="footer_question">
+                    <p>Ver mais...</p>
+                    <button type="submit" id='responder'>Responder</button>
+                </div>
                 
-                <button id='enviar' type='submit' onClick={handleSubmitQuestion}>Enviar</button>
             </div>
         </div>
     )
 }
 
-export default handleQuestion
+export default Question
