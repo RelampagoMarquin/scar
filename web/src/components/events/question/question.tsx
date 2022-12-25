@@ -12,7 +12,7 @@ function Question() {
                     <span id='tag'>Matemática</span>
                 </div>
                 <div className="question">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore eos omnis temporibus ipsam, perferendis, excepturi at ducimus error vitae quae expedita tempore, recusandae veniam assumenda quo quibusdam ab consequatur a.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore eos omnis temporibus ipsm, perferendis, excepturi at ducimus error vitae quae expedita tempore, recusandae veniam assumenda quo quibusdam ab consequatur a.</p>
                 </div>
                 <div className="footer_question">
                     <p>Ver mais...</p>
