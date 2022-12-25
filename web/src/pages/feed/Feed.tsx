@@ -14,7 +14,7 @@ import Perfil from '../Img/perfil.svg'
 import CampoPesquisa from '../../components/Layout/NavbarSearch'
 import Question from '../../components/events/question/question'
 import QuestionSender from '../../components/events/questionsender/questionsender'
-export function TelaInicial() {
+export function Feed() {
 
     return (
         <div id='containerFeed'>
@@ -37,4 +37,4 @@ export function TelaInicial() {
     )
 }
 
-export default TelaInicial;
+export default Feed;
