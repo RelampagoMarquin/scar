@@ -1,6 +1,14 @@
 export interface IUser {
-  registration?: string;
+  user?: cacheUser;
   token?: string;
+}
+
+interface cacheUser{
+  id: number;
+  registration: string;
+  class: string;
+  email: string;
+  name: string;
 }
 
 export interface IContext extends IUser {

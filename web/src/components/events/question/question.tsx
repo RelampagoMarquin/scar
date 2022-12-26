@@ -1,18 +1,24 @@
 import "./question.css"
-function Question() {
 
+interface QuestionProps {
+    question: string,
+    resolved: boolean,
+    user: string,
+    //materia: string,
+}
 
+function Question(props: QuestionProps) {
     return (
         <div className="background">
             <div className="infield">
                 <div className="header_question">
-                    {/* user */}
-                    <p>Cicrano</p>
-                    {/* tag pergunta */}
-                    <span id='tag'>Matemática</span>
+                    <p>{props.user}</p>
+                    <span id='tag'>{//props.materia
+                    }
+                    </span>
                 </div>
                 <div className="question">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore eos omnis temporibus ipsm, perferendis, excepturi at ducimus error vitae quae expedita tempore, recusandae veniam assumenda quo quibusdam ab consequatur a.</p>
+                    <p>{props.question}</p>
                 </div>
                 <div className="footer_question">
                     <p>Ver mais...</p>

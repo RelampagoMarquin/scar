@@ -22,14 +22,13 @@ export function getUserLocalStorage() {
 export async function LoginRequest(registration: String, password: String) {
   try {
     const request = await api.post('/login', { registration, password });
-    console.log(request)
     return request.data;
   } catch {
     return null;
   }
 }
 
-export async function SignupRequest(
+/* export async function SignupRequest(
   name: string,
   registration: string,
   sexo: string,
@@ -49,4 +48,4 @@ export async function SignupRequest(
   } catch {
     return null;
   }
-}
+} */

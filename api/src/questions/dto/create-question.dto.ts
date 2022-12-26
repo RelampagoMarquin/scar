@@ -10,4 +10,7 @@ export class CreateQuestionDto {
 
     @ApiProperty()
     userId: number;
+
+    @ApiProperty()
+    tagId: number;
 }
