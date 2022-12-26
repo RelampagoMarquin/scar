@@ -1,24 +1,33 @@
-import { createElement, useState } from "react"
+import "./question.css"
 
+interface QuestionProps {
+    question: string,
+    resolved: boolean,
+    user: string,
+    //materia: string,
+}
 
-export function handleQuestion() {
-
-    const [question, setQuestion] = useState('')
-
-    function handleSubmitQuestion (){
-        setQuestion ('')
-        console.log(question)
-    }
-
+function Question(props: QuestionProps) {
     return (
-        <div className="containerPergunta">
-            <textarea className='pergunta' name="pergunta" value={question} placeholder="Faça sua pergunta aqui!" onChange={e => setQuestion(e.target.value)}/>
-            <div className='botoes'>
-                {/* <button id='categorias'>Categorias</button> */}
-                <button id='enviar' type='submit' onClick={handleSubmitQuestion}>Enviar</button>
+        <div className="background">
+            <div className="infield">
+                <div className="header_question">
+                    <p>{props.user}</p>
+                    <span id='tag'>{//props.materia
+                    }
+                    </span>
+                </div>
+                <div className="question">
+                    <p>{props.question}</p>
+                </div>
+                <div className="footer_question">
+                    <p>Ver mais...</p>
+                    <button type="submit" id='responder'>Responder</button>
+                </div>
+                
             </div>
         </div>
     )
 }
 
-export default handleQuestion
+export default Question

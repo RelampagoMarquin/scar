@@ -6,7 +6,10 @@ import axios from "axios";
 import {
     BrowserRouter as Router,
     Link,
+    Route,
+    useNavigate,
 } from 'react-router-dom'
+import { baseURL } from "../variables/baseUrl";
 
 interface User {
     name: string;
@@ -17,9 +20,7 @@ interface User {
 }
 
 export function handleCadastro() {
-
-    const [user, setuser] = useState<User>()
-
+    const navigate = useNavigate();
     async function Cadastro(event: FormEvent) {
         event.preventDefault()
         const formData = new FormData(event.target as HTMLFormElement)
@@ -28,17 +29,37 @@ export function handleCadastro() {
             return
         }
         try {
-            console.log(data)
-            axios.post('http://localhost:3030/users', {
+            axios.post(`${baseURL}/users`, {
                 "name": data.name,
                 "registration": data.registration,
                 "email": data.email,
                 "class": data.class,
                 "password": data.password
             })
+            .then(function (response) {
+                console.log(response);
+                navigate('/Login');
+                alert('Cadastrado com sucesso')
+            })
+            .catch(function (error) {
+                if (error.response) {
+                  // Request made and server responded
+                  if(error.response.message == 409){
+                    alert('Usuario com email ou matricula já cadastrado')
+                  }else{
+                    alert('Erro ao cadastrar' + error.response.data + error.response.headers)
+                  }
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  console.log(error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message);
+                }
+            
+              });
         } catch (error) {
             console.log(error)
-            alert('Erro')
         };
     }
 

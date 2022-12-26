@@ -12,6 +12,7 @@ Antes de iniciar configure o ambiente procure o arquivo .env e coloque a senha e
 ```bash
 npm i #instala dependencia
 npx prisma migrate dev #cria o banco de dados
+npx prisma db seed #vai inserir autmaticamente alguns dados no banco, par anão terem que ser cadastrado na mão
 ``` 
 para criar as tabelas no banco de dados, após executar pode ser que sejá solicitado um nome para a migração.
 

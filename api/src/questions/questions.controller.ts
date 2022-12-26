@@ -18,11 +18,14 @@ import {
 } from '@nestjs/swagger';
 import { QuestionEntity } from './entities/question.entity';
 import { yupCreateQuestionInput } from 'src/yup/questions';
+import { AnswerEntity } from 'src/answers/entities/answer.entity';
+import { AnswersService } from 'src/answers/answers.service';
 
 @Controller('questions')
 @ApiTags('questions')
 export class QuestionsController {
-  constructor(private readonly questionsService: QuestionsService) {}
+  constructor(private readonly questionsService: QuestionsService, 
+    private readonly answersService: AnswersService) {}
 
   @Post()
   @ApiCreatedResponse({ type: QuestionEntity})
@@ -64,5 +67,11 @@ export class QuestionsController {
   @ApiOkResponse({ type: QuestionEntity})
   async remove(@Param('id') id: string) {
     return this.questionsService.remove(+id);
+  }
+
+  @Get(":id/answers")
+  @ApiOkResponse({ type: AnswerEntity, isArray: true})
+  async findAllByQuestion(@Param('id') id: string) {
+    return this.answersService.findAllByQuestion(+id);
   }
 }
