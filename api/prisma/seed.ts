@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
     // base de materias e tags, para evitar erros, 
     //use apenas quando as tabelas estiverem limpas e na primeira vez que iniciar o projeto
-   /* const materias = await prisma.types.createMany({
+    const materias = await prisma.types.createMany({
         data: [
             { name: 'Portugues', },
             { name: 'Matematica' },
@@ -19,7 +19,7 @@ async function main() {
         ]
     });
 
-    console.log(materias)  */
+    console.log(materias) 
 
     const tags = await prisma.tags.createMany({
         data: [

@@ -5,7 +5,7 @@ import '../feed/feed.css'
 import Question from '../../components/events/question/question'
 import { useEffect, useState } from 'react'
 import api from '../../services/api'
-import QuestionField from '../../components/Layout/QuestionField'
+import QuestionField from '../../components/Layout/questionField/QuestionField'
 import { useAuth } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
 
@@ -52,8 +52,7 @@ export function Feed() {
 
     function handleLogout(){
         logout()
-        navigate('/login');
-        
+        navigate('/login'); 
     }
     return (
         <div id='containerFeed'>
@@ -68,7 +67,7 @@ export function Feed() {
                     </div>
                     <button className='button-seach'><img id='botaopesquisa' /></button>
                 </div>
-                <a onClick={handleLogout}>logout</a>
+                <a onClick={handleLogout} id='logout'>Sair</a>
             </header>
             <main id='MainInicioContainer'>
             <QuestionField />

@@ -1,0 +1,20 @@
+h2{
+    text-align: center;
+    margin-top: 5rem;
+}
+#bgprotected{
+    margin: 7rem 0;
+    padding: 3rem;
+    background-color: #181818;
+    text-align: center;
+}
+#loginprotected{
+    border: 2px solid green;
+    border-radius: 15px;
+    margin: 15px auto 0;
+    width: 100px;
+}
+#loginprotected > a:hover{
+    text-decoration: none;
+    color: greenyellow;
+}

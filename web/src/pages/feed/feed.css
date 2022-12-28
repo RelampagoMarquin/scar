@@ -1,0 +1,9 @@
+#logout {
+    align-self: center;
+    padding: 0 15px;
+    font-size: 2.1rem;
+    color: green;
+    cursor: pointer;
+    border: 2px solid green;
+    border-radius: 15px;
+}

@@ -1,0 +1,21 @@
+textarea {
+    resize: none;
+    min-width: 810px;
+    background-color: #444;
+}
+
+#undertextarea {
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+}
+
+.submitquestion {
+
+    background-color: #68B92C;
+    font-size: 1.4rem;
+    height: 3rem;
+    border-radius: 15rem;
+    align-self: center;
+
+}

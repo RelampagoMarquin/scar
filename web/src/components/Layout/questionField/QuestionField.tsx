@@ -1,6 +1,7 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import { useAuth } from '../../hooks';
-import api from '../../services/api';
+import { useAuth } from '../../../hooks';
+import api from '../../../services/api';
+import './styles.css'
 
 interface Tag {
   id: number;
@@ -37,7 +38,7 @@ export function QuestionField() {
       }).catch(response => {
         alert('Erro ao cadastrar pergunta')
       })
-    } catch (error){
+    } catch (error) {
       console.log(error)
       alert('erro ao cadastrar')
     }
@@ -45,23 +46,26 @@ export function QuestionField() {
   }
 
   return (
-    <div>
+    <div className='background'>
       <form onSubmit={handleQuestion}>
         <label>
-          <p>Escreva aqui sua Pergunta:</p>
-          <textarea  className='campoformulario' name="question" placeholder="Escreva sua pergunta" required />
+          <textarea className='campoformulario' name="question" placeholder="Faça sua pergunta aqui" required />
         </label>
-        <label htmlFor="tag">Qual a tag</label>
-        <select
-          name='tag'
-          id="tag"
-        >
-          <option disabled defaultValue="" value="">Selecione a tag</option>
-          {tags.map(tag => {
-            return <option key={tag.id} value={tag.id}>{tag.name}</option>
-          })}
-        </select>
-        <button type="submit" className="submitformbutton">Perguntar</button>
+        <div id='undertextarea'>
+          <label htmlFor="tag"><select
+            name='tag'
+            id="tag"
+          >
+            <option disabled defaultValue="" value="">Categorias</option>
+            {tags.map(tag => {
+              return <option key={tag.id} value={tag.id}>{tag.name}</option>
+            })}
+          </select>
+          </label>
+          
+          <button type="submit" className="submitquestion">Enviar</button>
+        </div>
+
       </form>
     </div>
   );

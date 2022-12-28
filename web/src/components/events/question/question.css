@@ -3,6 +3,7 @@
 }
 .background{
     margin: 0 auto;
+    margin-bottom: 10px;
     width: 850px;
     background-color: #181818;
     padding: 2rem;
@@ -26,6 +27,8 @@
 .question{
     background-color: #444;
     margin: 1rem 0;
+    text-align: left !important;
+    padding: 0 10px;
 }
 .footer_question{
     display: flex;

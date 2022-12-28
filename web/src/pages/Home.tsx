@@ -3,16 +3,22 @@ import Navbar from '../components/Layout/navbar'
 import Rodape from '../components/Layout/Footer'
 import '../Css/Styles.css'
 import Estudantes from '../Img/Students-pana1.svg'
+import { useAuth } from '../hooks'
+import NewOpt from '../components/estateHome/estateHome'
 
 
 
 export function Home() {
+    const logado = useAuth();
 
     return (
-        <div>
+        <div> 
             <header id='HomeHeader'>
                 <Logo />
-                <Navbar />
+                <>
+                {!logado.token && <Navbar />}
+                {logado.token && <NewOpt />}
+                </>
             </header>
             <main id='MainHomeContainer'>
                 <div>
