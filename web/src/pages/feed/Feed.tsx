@@ -10,32 +10,14 @@ import { useAuth } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
 
 interface Question {
-    id: number,
-    question: string,
-    resolved: boolean,
-    user: User,
-    questiontags: Questiontags,
+    id: number;
+    user: string;
+    question: string;
+    resolved: boolean;
+    creatAt: Date;
+    typeName: string;
 }
 
-interface User{
-    name: string
-}
-
-interface type{
-    name: string
-}
-
-interface tag{
-    id: number
-    name: string
-    type: type
-}
-
-interface Questiontags{
-    id: number
-    questionid: number
-    tag: tag
-}
 
 
 
@@ -46,13 +28,15 @@ export function Feed() {
 
     useEffect(() => {
         api.get('/questions').then(response => {
-            setQuestions(response.data)
-        })
+            const data = response.data
+            setQuestions(data);
+        }).catch(error => {
+            console.log(error);
+        });
     }, [])
-
-    function handleLogout(){
+    function handleLogout() {
         logout()
-        navigate('/login'); 
+        navigate('/login');
     }
     return (
         <div id='containerFeed'>
@@ -70,22 +54,24 @@ export function Feed() {
                 <a onClick={handleLogout} id='logout'>Sair</a>
             </header>
             <main id='MainInicioContainer'>
-            <QuestionField />
+                <QuestionField />
                 <div>
+
                     {questions.map(question => {
+
                         return (
                             <Question
                                 key={question.id}
-                                user={question.user.name}
+                                user={question.user}
                                 question={question.question}
-                                //materia={question.questiontags.tag.type.name}
+                                materia={question.typeName}
                                 resolved={question.resolved}
                             />
                         )
-                    })}                       
+                    })}
                 </div>
-            </main>
-        </div>
+            </main >
+        </div >
     )
 }
 

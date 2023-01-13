@@ -4,7 +4,7 @@ interface QuestionProps {
     question: string,
     resolved: boolean,
     user: string,
-    //materia: string,
+    materia: string,
 }
 
 function Question(props: QuestionProps) {
@@ -13,8 +13,7 @@ function Question(props: QuestionProps) {
             <div className="infield">
                 <div className="header_question">
                     <p>{props.user}</p>
-                    <span id='tag'>{//props.materia
-                    }
+                    <span id='tag'>{props.materia}
                     </span>
                 </div>
                 <div className="question">

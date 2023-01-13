@@ -30,7 +30,7 @@ export class QuestionsService {
   }
 
   async findAll() {
-    return this.prisma.questions.findMany({
+    const questions = await this.prisma.questions.findMany({
       //include é utilizado para fazer buscas em mais de uma tabela
       include: {
         user: {
@@ -39,6 +39,7 @@ export class QuestionsService {
           }
         },
         Questiontags: {
+          take: 1,
           include: {
             tag: {
               include: {
@@ -53,8 +54,13 @@ export class QuestionsService {
         }
       }, orderBy: {
         creatAt: 'desc'
-      }
+      },
     });
+    const quests = questions.map(({user: { name:user }, id,
+      question, creatAt, resolved, 
+      Questiontags:[{tag:{type:{name:typeName}}}]}) => 
+      ({ id, user, question, resolved, creatAt, typeName }));
+    return quests
   }
 
   async findOne(id: number) {
