@@ -18,9 +18,6 @@ interface Question {
     typeName: string;
 }
 
-
-
-
 export function Feed() {
     const [questions, setQuestions] = useState<Question[]>([])
     const { logout } = useAuth();
@@ -65,7 +62,7 @@ export function Feed() {
                                 user={question.user}
                                 question={question.question}
                                 materia={question.typeName}
-                                resolved={question.resolved}
+                                resolved={question.resolved} 
                             />
                         )
                     })}

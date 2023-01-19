@@ -52,17 +52,18 @@ export function QuestionField() {
           <textarea className='campoformulario' name="question" placeholder="Faça sua pergunta aqui" required />
         </label>
         <div id='undertextarea'>
-          <label htmlFor="tag"><select
-            name='tag'
-            id="tag"
-          >
-            <option disabled defaultValue="" value="">Categorias</option>
-            {tags.map(tag => {
-              return <option key={tag.id} value={tag.id}>{tag.name}</option>
-            })}
-          </select>
+          <label htmlFor="tag">
+            <select
+              name='tag'
+              id="tag"
+            >
+              <option disabled defaultValue="" value="">Categorias</option>
+              {tags.map(tag => {
+                return <option key={tag.id} value={tag.id}>{tag.name}</option>
+              })}
+            </select>
           </label>
-          
+
           <button type="submit" className="submitquestion">Enviar</button>
         </div>
 

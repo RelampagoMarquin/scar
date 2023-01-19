@@ -5,6 +5,7 @@ import Login from '../pages/FormLogin'
 import Home from '../pages/Home'
 import { Feed } from '../pages/feed/Feed'
 import { ProtectedLayout } from '../components/ProtectedLayout';
+import RespostaCampo from '../pages/pageResposta/pageResposta';
 
 function RoutesApp() {
     return (
@@ -19,6 +20,11 @@ function RoutesApp() {
                     </ProtectedLayout>
                 }
                 />
+                <Route path='/Answer' element={
+                    <ProtectedLayout>
+                        <RespostaCampo />
+                    </ProtectedLayout>
+                } />
             </Routes>
         </BrowserRouter>
     );

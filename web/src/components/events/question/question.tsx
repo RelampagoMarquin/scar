@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./question.css"
 
 interface QuestionProps {
@@ -5,6 +6,7 @@ interface QuestionProps {
     resolved: boolean,
     user: string,
     materia: string,
+    id: number,
 }
 
 function Question(props: QuestionProps) {
@@ -21,12 +23,12 @@ function Question(props: QuestionProps) {
                 </div>
                 <div className="footer_question">
                     <p>Ver mais...</p>
-                    <button type="submit" id='responder'>Responder</button>
+                    <Link to='/answer'>Responder</Link>
                 </div>
                 
-            </div>
+            </div> 
         </div>
     )
-}
+} 
 
 export default Question
