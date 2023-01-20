@@ -1,8 +1,12 @@
 import React, { FormEvent, useState } from 'react';
 import { useAuth } from '../../../hooks';
 import api from '../../../services/api';
+import Question from '../../events/question/question';
 
-export function AnswerField() {
+interface idprops{
+  id: number
+}
+export function AnswerField(props: idprops) {
   const [userId, setUserId] = useState<number>()
   const auth = useAuth().user?.id
 
@@ -10,13 +14,13 @@ export function AnswerField() {
     const ansData = new FormData(event.target as HTMLFormElement)
 
     const data = Object.fromEntries(ansData)
-
+    console.log(props.id)
     if (!data.answer) {
       return
     }
     try {
-      api.post('/answers', {
-        "answer": data.question,
+      api.post(`/answers/question/${props.id}`, {
+        "answer": data.answer,
         "userId": auth,
       }).then(response => {
         alert('Resposta cadastrada')

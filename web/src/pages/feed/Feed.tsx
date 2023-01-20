@@ -9,7 +9,7 @@ import QuestionField from '../../components/Layout/questionField/QuestionField'
 import { useAuth } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
 
-interface Question {
+export interface Question {
     id: number;
     user: string;
     question: string;
@@ -62,7 +62,8 @@ export function Feed() {
                                 user={question.user}
                                 question={question.question}
                                 materia={question.typeName}
-                                resolved={question.resolved} 
+                                resolved={question.resolved}
+                                id={question.id} 
                             />
                         )
                     })}

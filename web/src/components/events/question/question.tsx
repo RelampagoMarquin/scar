@@ -23,7 +23,7 @@ function Question(props: QuestionProps) {
                 </div>
                 <div className="footer_question">
                     <p>Ver mais...</p>
-                    <Link to='/answer'>Responder</Link>
+                    <Link to={`/question/${props.id}`}>Responder</Link>
                 </div>
                 
             </div> 

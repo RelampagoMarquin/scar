@@ -1,14 +1,18 @@
+import { useEffect } from "react"
+import Question from "../question/question"
+
 interface AnswerProps{
-    "answer": string,
-    "best": false,
-    "avaliation": 0,
-    "questionId": 0,
-    "user": string
-    "userId": 0
+    "answer": string;
+    "best": boolean;
+    "avaliation": number;
+    "user": string;
   }
 
 function Answers(props: AnswerProps) {
     return (
+
+        //<Question/>
+
         <div className="background">
             <div className="infield">
                 <div className="header_answer">

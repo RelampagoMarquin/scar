@@ -20,7 +20,7 @@ function RoutesApp() {
                     </ProtectedLayout>
                 }
                 />
-                <Route path='/Answer' element={
+                <Route path='/question/:id' element={
                     <ProtectedLayout>
                         <RespostaCampo />
                     </ProtectedLayout>

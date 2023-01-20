@@ -23,15 +23,17 @@ import { AnswerEntity } from './entities/answer.entity';
 export class AnswersController {
   constructor(private readonly answersService: AnswersService) {}
 
-  @Post()
+  @Post('question/:questionid')
   @ApiCreatedResponse({ type: AnswerEntity})
-  async create(@Body() createAnswerDto: CreateAnswerDto) {
+  async create(@Param('questionid') questionid:string ,@Body() createAnswerDto: CreateAnswerDto) {
     // utiliza o yup para validar os dados
-    const isValidInput = yupCreateAnswersInput.isValidSync(createAnswerDto)
+    const id = questionid.toString()
+    createAnswerDto.questionId = Number(id)
+    /* const isValidInput = yupCreateAnswersInput.isValidSync(createAnswerDto)
 
     if(!isValidInput){
       throw new BadRequestException('Seu input está inválido')
-    }
+    } */
 
     return this.answersService.create(createAnswerDto);
   }
