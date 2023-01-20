@@ -17,7 +17,7 @@ interface Answer {
 }
 
 interface Question {
-    answer: Answer[];
+    Answer: Answer[];
     id: number;
     user: { name: string };
     question: string;
@@ -54,7 +54,8 @@ export function RespostaCampo() {
             <AnswerField id={idt} />
 
             <div>
-                {question?.answer?.map(answer => {
+                {question?.Answer?.map(answer => {
+                    
                     return (
                         <Answers
                             key={answer.id}

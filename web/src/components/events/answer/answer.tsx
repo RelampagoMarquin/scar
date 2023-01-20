@@ -5,7 +5,7 @@ interface AnswerProps{
     "answer": string;
     "best": boolean;
     "avaliation": number;
-    "user": string;
+    "user": {name: string};
   }
  
 function Answers(props: AnswerProps) {
@@ -16,7 +16,7 @@ function Answers(props: AnswerProps) {
         <div className="background">
             <div className="infield">
                 <div className="header_answer">
-                    <p>{props.user}</p>
+                    <p>{props.user.name}</p>
                 </div>
  
                 <div className="answer">
