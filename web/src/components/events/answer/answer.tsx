@@ -7,7 +7,7 @@ interface AnswerProps{
     "avaliation": number;
     "user": string;
   }
-
+ 
 function Answers(props: AnswerProps) {
     return (
 

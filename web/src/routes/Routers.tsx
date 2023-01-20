@@ -6,6 +6,9 @@ import Home from '../pages/Home'
 import { Feed } from '../pages/feed/Feed'
 import { ProtectedLayout } from '../components/ProtectedLayout';
 import RespostaCampo from '../pages/pageResposta/pageResposta';
+import Sobre from '../pages/sobre/sobre';
+import { Ajuda } from '../pages/ajuda/ajuda';
+import Redes from '../pages/redes/redes';
 
 function RoutesApp() {
     return (
@@ -14,6 +17,10 @@ function RoutesApp() {
                 <Route path='/' element={<Home />} />
                 <Route path='/Cadastro' element={<Cadastro />} />
                 <Route path='/Login' element={<Login />} />
+                <Route path='/Sobre' element={<Sobre />} />
+                <Route path='/Ajuda' element={<Ajuda />} />
+                <Route path='/Redes' element={<Redes />} />
+
                 <Route path='/Feed' element={
                     <ProtectedLayout>
                         <Feed />

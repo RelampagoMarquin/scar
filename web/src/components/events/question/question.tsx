@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
 import "./question.css"
 
-interface QuestionProps {
+export interface QuestionProps {
     question: string,
     resolved: boolean,
     user: string,
     materia: string,
     id: number,
-}
+} 
 
 function Question(props: QuestionProps) {
     return (

@@ -8,8 +8,9 @@ import api from '../../services/api'
 import QuestionField from '../../components/Layout/questionField/QuestionField'
 import { useAuth } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
+import { QuestionProps } from '../../components/events/question/question'
 
-export interface Question {
+interface Question extends QuestionProps {
     id: number;
     user: string;
     question: string;
@@ -56,7 +57,7 @@ export function Feed() {
 
                     {questions.map(question => {
 
-                        return (
+                        return ( 
                             <Question
                                 key={question.id}
                                 user={question.user}

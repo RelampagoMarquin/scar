@@ -4,7 +4,7 @@ import api from '../../../services/api';
 import Question from '../../events/question/question';
 
 interface idprops{
-  id: number
+  id: number 
 }
 export function AnswerField(props: idprops) {
   const [userId, setUserId] = useState<number>()

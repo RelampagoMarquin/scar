@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import Answers from "../../components/events/answer/answer"
 import AnswerField from "../../components/Layout/answerField/answersField"
 import api from "../../services/api"
-import { Question } from "../feed/Feed";
+import { QuestionProps } from "../../components/events/question/question";
+import Questions from "../../components/events/question/question";
 
 interface Answer {
     id: number;
@@ -15,13 +16,14 @@ interface Answer {
     creatAt: Date;
 }
 
-interface QuestionA extends Question{
-    answer: Answer[] 
+interface Question extends QuestionProps {
+    answer: Answer[];
+    user: string;
 }
 
 export function RespostaCampo() {
     const [answers, setAnswers] = useState<Answer[]>([])
-    const [question, setQuestion] = useState<QuestionA>()
+    const [question, setQuestion] = useState<Question>()
     const { id } = useParams()
     const idt = Number(id)
 
@@ -34,10 +36,14 @@ export function RespostaCampo() {
 
     return (
         <section>
-            <h1>QUESTION de id: {id}</h1>
-            <p>{question?.question}</p>
-            <AnswerField id={idt}/>
+            <div id='campo-res'>
+                <h1>QUESTION de id: {id}</h1>
+
+                <p>{question?.question}</p>
+            </div>
             <hr />
+            <AnswerField id={idt} />
+
             <div>
                 {question?.answer?.map(answer => {
                     return (
@@ -45,12 +51,12 @@ export function RespostaCampo() {
                             key={answer.id}
                             user={answer.user}
                             answer={answer.answer}
-                            best={answer.best} 
-                            avaliation={answer.avaliation} 
+                            best={answer.best}
+                            avaliation={answer.avaliation}
                         />
                     )
                 })}
-                <hr />
+
             </div>
         </section>
 

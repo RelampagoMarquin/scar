@@ -5,7 +5,7 @@ import './styles.css'
 
 interface Tag {
   id: number;
-  name: string;
+  name: string; 
 }
 
 export function QuestionField() {
