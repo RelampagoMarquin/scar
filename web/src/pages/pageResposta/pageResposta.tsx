@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import Answers from "../../components/events/answer/answer"
+import Question from "../../components/events/question/question";
 import AnswerField from "../../components/Layout/answerField/answersField"
+import Logo from "../../components/Layout/Logo";
 import api from "../../services/api"
-import { QuestionProps } from "../../components/events/question/question";
-import Questions from "../../components/events/question/question";
 
 interface Answer {
     id: number;
@@ -16,9 +16,15 @@ interface Answer {
     creatAt: Date;
 }
 
-interface Question extends QuestionProps {
+interface Question {
     answer: Answer[];
-    user: string;
+    id: number;
+    user: { name: string };
+    question: string;
+    resolved: boolean;
+    creatAt: Date;
+    typeName: string;
+
 }
 
 export function RespostaCampo() {
@@ -36,10 +42,13 @@ export function RespostaCampo() {
 
     return (
         <section>
+            <Logo />
             <div id='campo-res'>
                 <h1>QUESTION de id: {id}</h1>
 
                 <p>{question?.question}</p>
+                <small>{question?.user.name}</small>
+                
             </div>
             <hr />
             <AnswerField id={idt} />

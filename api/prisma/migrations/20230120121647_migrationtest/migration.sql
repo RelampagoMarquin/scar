@@ -1,35 +1,35 @@
 /*
   Warnings:
 
-  - You are about to drop the `answer` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `question` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `type` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `user` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `Answer` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `Question` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `Type` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
 
 */
 -- DropForeignKey
-ALTER TABLE `answer` DROP FOREIGN KEY `Ansewr_questionId_fkey`;
+ALTER TABLE `Answer` DROP FOREIGN KEY `Ansewr_questionId_fkey`;
 
 -- DropForeignKey
-ALTER TABLE `answer` DROP FOREIGN KEY `Ansewr_userId_fkey`;
+ALTER TABLE `Answer` DROP FOREIGN KEY `Ansewr_userId_fkey`;
 
 -- DropForeignKey
-ALTER TABLE `question` DROP FOREIGN KEY `Question_typeId_fkey`;
+ALTER TABLE `Question` DROP FOREIGN KEY `Question_typeId_fkey`;
 
 -- DropForeignKey
-ALTER TABLE `question` DROP FOREIGN KEY `Question_userId_fkey`;
+ALTER TABLE `Question` DROP FOREIGN KEY `Question_userId_fkey`;
 
 -- DropTable
-DROP TABLE `answer`;
+DROP TABLE `Answer`;
 
 -- DropTable
-DROP TABLE `question`;
+DROP TABLE `Question`;
 
 -- DropTable
-DROP TABLE `type`;
+DROP TABLE `Type`;
 
 -- DropTable
-DROP TABLE `user`;
+DROP TABLE `User`;
 
 -- CreateTable
 CREATE TABLE `Answers` (

@@ -24,7 +24,7 @@ export function QuestionField() {
     const formData = new FormData(event.target as HTMLFormElement)
 
     const data = Object.fromEntries(formData)
-
+    console.log(auth)
     if (!data.question) {
       return
     }

@@ -8,9 +8,8 @@ import api from '../../services/api'
 import QuestionField from '../../components/Layout/questionField/QuestionField'
 import { useAuth } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
-import { QuestionProps } from '../../components/events/question/question'
 
-interface Question extends QuestionProps {
+export interface Question{
     id: number;
     user: string;
     question: string;
@@ -26,10 +25,10 @@ export function Feed() {
 
     useEffect(() => {
         api.get('/questions').then(response => {
-            const data = response.data
+            const data = response.data 
             setQuestions(data);
         }).catch(error => {
-            console.log(error);
+            alert('ERRO AO CADADATRAR')
         });
     }, [])
     function handleLogout() {

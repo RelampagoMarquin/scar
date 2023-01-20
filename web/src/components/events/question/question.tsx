@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import "./question.css"
 
-export interface QuestionProps {
+interface QuestionProps {
     question: string,
     resolved: boolean,
     user: string,
