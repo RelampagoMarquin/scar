@@ -1,14 +1,18 @@
 
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import AnswerViwer from "../../components/question_viwer";
 import Answers from "../../components/events/answer/answer"
 import Question from "../../components/events/question/question";
 import AnswerField from "../../components/Layout/answerField/answersField"
-import Logo from "../../components/Layout/Logo";
 import api from "../../services/api"
+import '../../Css/Styles.css'
+import Logo from "../../components/Layout/Logo";
+import { useAuth } from "../../hooks";
 
 interface Answer {
     id: number;
+    userId: number;
     user: string;
     answer: string;
     best: boolean;
@@ -24,14 +28,18 @@ interface Question {
     resolved: boolean;
     creatAt: Date;
     typeName: string;
-
 }
+
 
 export function RespostaCampo() {
     const [answers, setAnswers] = useState<Answer[]>([])
     const [question, setQuestion] = useState<Question>()
     const { id } = useParams()
     const idt = Number(id)
+    const auth = useAuth()
+    const logado = auth.user?.name
+    const criadorPergunta = question?.user.name
+
 
     useEffect(() => {
         api.get(`/questions/${id}`).then(response => {
@@ -42,20 +50,26 @@ export function RespostaCampo() {
 
     return (
         <section>
-            <Logo />
-            <div id='campo-res'>
+            <header id='HomeHeader'>
+                <Logo />
+            </header>
+            {/* <div id='campo-res'>
                 <h1>QUESTION de id: {id}</h1>
-
                 <p>{question?.question}</p>
                 <small>{question?.user.name}</small>
-                
-            </div>
-            <hr />
-            <AnswerField id={idt} />
+            </div> */}
 
+            <AnswerViwer />
+            <>  
+            {/* Rendeziração condicional: Depois colocar isso pra aparecer na pergunta */}
+            <h4>Teste</h4>
+                {(logado == criadorPergunta) && <Logo />}
+            </>
+            <AnswerField id={idt} />
+            
             <div>
                 {question?.Answer?.map(answer => {
-                    
+
                     return (
                         <Answers
                             key={answer.id}

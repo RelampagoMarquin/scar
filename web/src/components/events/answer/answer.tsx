@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import Question from "../question/question"
+
 
 interface AnswerProps{
     "answer": string;
@@ -11,7 +11,7 @@ interface AnswerProps{
 function Answers(props: AnswerProps) {
     return (
 
-        //<Question/>
+        
 
         <div className="background">
             <div className="infield">
