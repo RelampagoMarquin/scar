@@ -9,6 +9,7 @@ import api from "../../services/api"
 import '../../Css/Styles.css'
 import Logo from "../../components/Layout/Logo";
 import { useAuth } from "../../hooks";
+import best, { Best } from "../../components/events/best/best";
 
 interface Answer {
     id: number;
@@ -24,6 +25,7 @@ interface Question {
     Answer: Answer[];
     id: number;
     user: { name: string };
+    userId: number;
     question: string;
     resolved: boolean;
     creatAt: Date;
@@ -37,8 +39,8 @@ export function RespostaCampo() {
     const { id } = useParams()
     const idt = Number(id)
     const auth = useAuth()
-    const logado = auth.user?.name
-    const criadorPergunta = question?.user.name
+    const logado = auth.user?.id
+    const criadorPergunta = question?.userId
 
 
     useEffect(() => {
@@ -63,7 +65,7 @@ export function RespostaCampo() {
             <>  
             {/* Rendeziração condicional: Depois colocar isso pra aparecer na pergunta */}
             <h4>Teste</h4>
-                {(logado == criadorPergunta) && <Logo />}
+                {(logado == criadorPergunta) && <Best/>}
             </>
             <AnswerField id={idt} />
             
