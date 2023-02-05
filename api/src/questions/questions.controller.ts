@@ -63,6 +63,12 @@ export class QuestionsController {
     return this.questionsService.update(+id, updateQuestionDto);
   }
 
+  @Patch('solved/:id')
+  @ApiOkResponse({ type: QuestionEntity})
+  async solved(@Param('id') id: number) {
+    return this.questionsService.solved(+id);
+  }
+
   @Delete(':id')
   @ApiOkResponse({ type: QuestionEntity})
   async remove(@Param('id') id: string) {

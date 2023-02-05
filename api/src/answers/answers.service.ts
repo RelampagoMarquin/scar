@@ -43,4 +43,46 @@ export class AnswersService {
   async remove(id: number) {
     return this.prisma.answers.delete({ where: {id}});
   }
+
+  async best(id: number) {
+    const answer = await this.findOne(id)
+    const best = answer.best
+    if (best){
+      return this.prisma.answers.update({
+        where: { id },
+        data: {
+          best: false
+        }
+      });
+    }
+    else{
+      return this.prisma.answers.update({
+        where: { id },
+        data: {
+          best: true
+        }
+      });
+    }
+  }
+
+  async avaliationUp(id: number){
+    const answer = await this.findOne(id)
+    return this.prisma.answers.update({
+      where: { id },
+      data: {
+        avaliation: answer.avaliation + 1
+      }
+    });
+  }
+
+  async avaliationDown(id: number){
+    const answer = await this.findOne(id)
+    return this.prisma.answers.update({
+      where: { id },
+      data: {
+        avaliation: answer.avaliation - 1
+      }
+    });
+  }
+
 }

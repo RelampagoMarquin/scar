@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import AnswerViwer from "../../components/question_viwer";
+import QuestionViwer from "../../components/question_viwer";
 import Answers from "../../components/events/answer/answer"
 import Question from "../../components/events/question/question";
 import AnswerField from "../../components/Layout/answerField/answersField"
@@ -9,12 +9,11 @@ import api from "../../services/api"
 import '../../Css/Styles.css'
 import Logo from "../../components/Layout/Logo";
 import { useAuth } from "../../hooks";
-import best, { Best } from "../../components/events/best/best";
 
 interface Answer {
     id: number;
     userId: number;
-    user: string;
+    user: { id:number, name: string };
     answer: string;
     best: boolean;
     avaliation: number
@@ -24,7 +23,7 @@ interface Answer {
 interface Question {
     Answer: Answer[];
     id: number;
-    user: { name: string };
+    user: { id:number, name: string };
     userId: number;
     question: string;
     resolved: boolean;
@@ -34,18 +33,15 @@ interface Question {
 
 
 export function RespostaCampo() {
-    const [answers, setAnswers] = useState<Answer[]>([])
     const [question, setQuestion] = useState<Question>()
     const { id } = useParams()
     const idt = Number(id)
     const auth = useAuth()
     const logado = auth.user?.id
-    const criadorPergunta = question?.userId
 
 
     useEffect(() => {
         api.get(`/questions/${id}`).then(response => {
-            console.log(response.data)
             setQuestion(response.data)
         })
     }, [])
@@ -55,18 +51,16 @@ export function RespostaCampo() {
             <header id='HomeHeader'>
                 <Logo />
             </header>
-            {/* <div id='campo-res'>
-                <h1>QUESTION de id: {id}</h1>
-                <p>{question?.question}</p>
-                <small>{question?.user.name}</small>
-            </div> */}
 
-            <AnswerViwer />
-            <>  
-            {/* Rendeziração condicional: Depois colocar isso pra aparecer na pergunta */}
-            <h4>Teste</h4>
-                {(logado == criadorPergunta) && <Best/>}
-            </>
+            <QuestionViwer 
+            id={question?.id}
+            question={question?.question}
+            creatAt={question?.creatAt}
+            user={question?.user}
+            resolved={question?.resolved}
+            logado={logado}
+            />
+            
             <AnswerField id={idt} />
             
             <div>
@@ -79,6 +73,9 @@ export function RespostaCampo() {
                             answer={answer.answer}
                             best={answer.best}
                             avaliation={answer.avaliation}
+                            userQuestionID={question.user.id}
+                            logado={logado}
+                            id={answer.id}
                         />
                     )
                 })}

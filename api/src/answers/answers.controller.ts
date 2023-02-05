@@ -62,6 +62,24 @@ export class AnswersController {
     return this.answersService.update(+id, updateAnswerDto);
   }
 
+  @Patch('best/:id')
+  @ApiOkResponse({ type: AnswerEntity})
+  async best(@Param('id') id: number,) {
+    return this.answersService.best(+id);
+  }
+
+  @Patch('avaliationup/:id')
+  @ApiOkResponse({ type: AnswerEntity})
+  async avaliationUp(@Param('id') id: number,) {
+    return this.answersService.avaliationUp(+id);
+  }
+
+  @Patch('avaliationdown/:id')
+  @ApiOkResponse({ type: AnswerEntity})
+  async avaliationDown(@Param('id') id: number,) {
+    return this.answersService.avaliationDown(+id);
+  }
+
   @Delete(':id')
   @ApiOkResponse({ type: AnswerEntity})
   async remove(@Param('id') id: string) {
