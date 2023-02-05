@@ -14,11 +14,18 @@ import { UpdateTypeDto } from './dto/update-type.dto';
 import { 
   ApiCreatedResponse,
   ApiOkResponse,
+  ApiSecurity,
   ApiTags 
 } from '@nestjs/swagger';
 import { yupCreateTypeInput } from 'src/yup/types';
 import { TypeEntity } from './entities/type.entity';
+import { ClassSerializerInterceptor } from '@nestjs/common/serializer';
+import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
+@ApiSecurity('access-key')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('types')
 @ApiTags('types')
 export class TypesController {

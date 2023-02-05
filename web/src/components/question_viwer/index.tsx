@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useAuth } from '../../hooks';
 import api from '../../services/api';
 import '../events/question/question.css'
 import AnswerField from '../Layout/answerField/answersField';
@@ -11,20 +12,26 @@ interface propsQuestion {
     resolved: boolean | undefined;
     creatAt: Date | undefined;
     logado: number | undefined;
+    token: string | undefined;
 }
 
 export function QuestionViwer(props: propsQuestion) {
 
     const { id } = useParams()
     const idt = Number(id)
+    const token = props.token
 
     async function handleSolved() {
         const id = props.id
-        api.patch(`/questions/solved/${id}`, {
+        api.patch(`/questions/solved/${id}`, {}, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         }).then(response => {
             alert('Avaliado com sucesso')
+            window.location.reload()
         }).catch(response => {
-            alert('Erro ao cadastrar Avaliação')
+            alert('ERRO AO MARCAR COMO RESOLVIDO')
         })
 
     }
@@ -37,7 +44,7 @@ export function QuestionViwer(props: propsQuestion) {
 
                 <p id='question_viwer_header'><span>Feito por: {props.user?.name}</span><span id='resolved'>
                     {props.logado == props.user?.id ? <button onClick={handleSolved}>Resolvido</button> : null}
-                    
+
                 </span></p>
                 <div id='infield_question_viewer' className='question'>
                     <p>{props.resolved ? <p>Resolvido -</p> : null}{props.question}</p>
@@ -46,7 +53,7 @@ export function QuestionViwer(props: propsQuestion) {
             </div>
 
             <div>
-                <AnswerField id={idt}/>
+                <AnswerField id={idt} />
             </div>
         </div>
     )

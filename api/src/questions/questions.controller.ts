@@ -7,6 +7,9 @@ import {
    Param, 
    Delete, 
    BadRequestException,
+   UseGuards,
+   UseInterceptors,
+   ClassSerializerInterceptor,
  } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
@@ -14,13 +17,18 @@ import { UpdateQuestionDto } from './dto/update-question.dto';
 import { 
   ApiCreatedResponse,
   ApiOkResponse,
+  ApiSecurity,
   ApiTags 
 } from '@nestjs/swagger';
 import { QuestionEntity } from './entities/question.entity';
 import { yupCreateQuestionInput } from 'src/yup/questions';
 import { AnswerEntity } from 'src/answers/entities/answer.entity';
 import { AnswersService } from 'src/answers/answers.service';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
+@ApiSecurity('access-key')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('questions')
 @ApiTags('questions')
 export class QuestionsController {
@@ -65,7 +73,7 @@ export class QuestionsController {
 
   @Patch('solved/:id')
   @ApiOkResponse({ type: QuestionEntity})
-  async solved(@Param('id') id: number) {
+  async solved(@Param('id') id: string) {
     return this.questionsService.solved(+id);
   }
 

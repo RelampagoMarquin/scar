@@ -22,13 +22,19 @@ export function Feed() {
     const [questions, setQuestions] = useState<Question[]>([])
     const { logout } = useAuth();
     const navigate = useNavigate();
+    const auth = useAuth();
+    const token = auth.token
 
     useEffect(() => {
-        api.get('/questions').then(response => {
+        api.get('/questions', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }).then(response => {
             const data = response.data 
             setQuestions(data);
         }).catch(error => {
-            alert('ERRO AO CADADATRAR')
+            alert('ERRO AO ENCONTRAR RESPOSTAS')
         });
     }, [])
     function handleLogout() {

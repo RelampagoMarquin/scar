@@ -1,23 +1,28 @@
 import { useEffect } from "react"
+import { useAuth } from "../../../hooks";
 import api from "../../../services/api";
-import Best from "../best/best";
 import './answer.css'
 
 
 interface AnswerProps {
-  "id": number;
-  "answer": string;
-  "best": boolean;
-  "avaliation": number;
-  "user": { name: string, id: number };
-  "userQuestionID": number;
-  "logado": number | undefined;
+  id: number;
+  answer: string;
+  best: boolean;
+  avaliation: number;
+  user: { name: string, id: number };
+  userQuestionID: number;
+  logado: number | undefined;
+  token: string | undefined;
 }
 
 function Answers(props: AnswerProps) {
+  const token = props.token
   async function handleUp() {
     const id = props.id
-    api.patch(`/answers/avaliationup/${id}`, {
+    api.patch(`/answers/avaliationup/${id}`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }).then(response => {
       alert('Avaliado com sucesso')
       window.location.reload()
@@ -28,8 +33,10 @@ function Answers(props: AnswerProps) {
 
   async function handleDown() {
     const id = props.id
- 
-    api.patch(`/answers/avaliationdown/${id}`, {
+    api.patch(`/answers/avaliationdown/${id}`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }).then(response => {
       alert('Avaliado com sucesso')
       window.location.reload()
@@ -40,7 +47,10 @@ function Answers(props: AnswerProps) {
 
   async function handleBest() {
     const id = props.id
-    api.patch(`/answers/best/${id}`, {
+    api.patch(`/answers/best/${id}`,  {},{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }).then(response => {
       alert('Avaliado com sucesso')
       window.location.reload()

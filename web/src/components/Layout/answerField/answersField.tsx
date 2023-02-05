@@ -8,8 +8,9 @@ interface idprops {
   id: number
 }
 export function AnswerField(props: idprops) {
-  const [userId, setUserId] = useState<number>()
-  const auth = useAuth().user?.id
+  const auth = useAuth()
+  const authId = auth.user?.id
+  const token = auth.token
 
   async function handleAnswer(event: FormEvent) {
     const ansData = new FormData(event.target as HTMLFormElement)
@@ -22,7 +23,12 @@ export function AnswerField(props: idprops) {
     try {
       api.post(`/answers/question/${props.id}`, {
         "answer": data.answer,
-        "userId": auth,
+        "userId": authId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }).then(response => {
         alert('Resposta cadastrada')
       }).catch(response => {

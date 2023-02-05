@@ -16,6 +16,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import {
   ApiCreatedResponse,
   ApiOkResponse,
+  ApiSecurity,
   ApiTags
 } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
@@ -25,6 +26,9 @@ import {
   PasswordCheckService, 
   PasswordCheckStrength 
 } from '../utils/passwordcheck';
+import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { ClassSerializerInterceptor } from '@nestjs/common/serializer';
 
 @Controller('users')
 @ApiTags('users')
@@ -77,18 +81,27 @@ export class UsersController {
     
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiSecurity('access-key')
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   @ApiOkResponse({ type: UserEntity, isArray: true })
   async findAll() {
     return this.usersService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiSecurity('access-key')
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   @ApiOkResponse({ type: UserEntity })
   async findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiSecurity('access-key')
+  @UseInterceptors(ClassSerializerInterceptor)
   @Patch(':id')
   @ApiOkResponse({ type: UserEntity })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -106,6 +119,9 @@ export class UsersController {
     return this.usersService.update(+id, updateUserDto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiSecurity('access-key')
+  @UseInterceptors(ClassSerializerInterceptor)
   @Delete(':id')
   @ApiOkResponse({ type: UserEntity })
   async remove(@Param('id') id: string) {

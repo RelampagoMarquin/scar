@@ -36,13 +36,17 @@ interface Question {
 export function RespostaCampo() {
     const [question, setQuestion] = useState<Question>()
     const { id } = useParams()
-    const idt = Number(id)
     const auth = useAuth()
+    const token = auth.token
     const logado = auth.user?.id
 
 
     useEffect(() => {
-        api.get(`/questions/${id}`).then(response => {
+        api.get(`/questions/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }).then(response => {
             setQuestion(response.data)
         })
     }, [])
@@ -60,9 +64,8 @@ export function RespostaCampo() {
                     user={question?.user}
                     resolved={question?.resolved}
                     logado={logado}
+                    token={token}
                 />
-
-                {/* <AnswerField id={idt} /> */}
             </div>
 
 
@@ -78,6 +81,7 @@ export function RespostaCampo() {
                             avaliation={answer.avaliation}
                             userQuestionID={question.user.id}
                             logado={logado}
+                            token={token}
                             id={answer.id}
                         />
                     )

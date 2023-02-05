@@ -10,6 +10,7 @@ import { Controller,
 import { 
   ApiCreatedResponse, 
   ApiOkResponse, 
+  ApiSecurity, 
   ApiTags 
 } from '@nestjs/swagger';
 import { yupCreateAnswersInput } from 'src/yup/answers';
@@ -17,7 +18,13 @@ import { AnswersService } from './answers.service';
 import { CreateAnswerDto } from './dto/create-answer.dto';
 import { UpdateAnswerDto } from './dto/update-answer.dto';
 import { AnswerEntity } from './entities/answer.entity';
+import { ClassSerializerInterceptor } from '@nestjs/common/serializer';
+import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
+@ApiSecurity('access-key')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('answers')
 @ApiTags('answers')
 export class AnswersController {
