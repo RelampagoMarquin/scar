@@ -1,5 +1,8 @@
+import { useParams } from 'react-router-dom';
 import api from '../../services/api';
 import '../events/question/question.css'
+import AnswerField from '../Layout/answerField/answersField';
+import './question_viwer.css'
 
 interface propsQuestion {
     id: number | undefined;
@@ -12,30 +15,39 @@ interface propsQuestion {
 
 export function QuestionViwer(props: propsQuestion) {
 
-    async function handleSolved(){
+    const { id } = useParams()
+    const idt = Number(id)
+
+    async function handleSolved() {
         const id = props.id
         api.patch(`/questions/solved/${id}`, {
         }).then(response => {
-          alert('Avaliado com sucesso')
+            alert('Avaliado com sucesso')
         }).catch(response => {
-          alert('Erro ao cadastrar Avaliação')
+            alert('Erro ao cadastrar Avaliação')
         })
 
     }
 
     return (
-        <div className="background">
-            {props.logado == props.user?.id ? <button onClick={handleSolved}>Resolvido</button> : null}
-            {props.resolved ? <h2>resolvido</h2> : null}
-            <div id='container_question_viwer ' className="infield">
-                
-                <p>Feito por: <span>{props.user?.name}</span></p>
+        <div className="background question_viwer">
+
+            <div id='container_question_viwer' className="infield">
+
+
+                <p id='question_viwer_header'><span>Feito por: {props.user?.name}</span><span id='resolved'>
+                    {props.logado == props.user?.id ? <button onClick={handleSolved}>Resolvido</button> : null}
+                    
+                </span></p>
                 <div id='infield_question_viewer' className='question'>
-                    <p>{props.question}</p>
+                    <p>{props.resolved ? <p>Resolvido -</p> : null}{props.question}</p>
                 </div>
                 <small>{props.creatAt?.toString()}</small>
             </div>
 
+            <div>
+                <AnswerField id={idt}/>
+            </div>
         </div>
     )
 }

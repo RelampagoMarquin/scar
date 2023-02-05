@@ -12,7 +12,7 @@ interface QuestionProps {
 function Question(props: QuestionProps) {
     return (
         <div className="background">
-            <div className="infield">
+            <div className="infield infield-feed">
                 <div className="header_question">
                     <p>{props.user}</p>
                     <span id='tag'>{props.materia}

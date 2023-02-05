@@ -1,0 +1,12 @@
+#answer-textlbl{
+    display: flex;
+    flex-direction: column;
+}
+#inside-btn{
+    width: fit-content;
+    align-self: flex-end;
+    margin-top: 1rem;
+}
+#lbl-textarea{
+    height: 8rem;
+}

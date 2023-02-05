@@ -38,3 +38,6 @@
 #responder{
     justify-self: end;
 }
+.infield-feed{
+    display: block !important;
+}

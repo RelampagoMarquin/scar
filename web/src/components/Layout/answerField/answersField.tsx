@@ -2,9 +2,10 @@ import React, { FormEvent, useState } from 'react';
 import { useAuth } from '../../../hooks';
 import api from '../../../services/api';
 import Question from '../../events/question/question';
+import './styles.css'
 
-interface idprops{
-  id: number 
+interface idprops {
+  id: number
 }
 export function AnswerField(props: idprops) {
   const [userId, setUserId] = useState<number>()
@@ -35,14 +36,13 @@ export function AnswerField(props: idprops) {
   }
 
   return (
-    <div className='background'>
-      <form onSubmit={handleAnswer}>
-        <label>
-          <textarea className='campoResposta' name="answer" required />
-          <button type="submit">Enviar</button>
-        </label>
-      </form>
-    </div>
+
+    <form onSubmit={handleAnswer}>
+      <label id='answer-textlbl'>
+        <textarea className='campoResposta' name="answer" id='lbl-textarea' required/>
+        <button type="submit" id='inside-btn'>Enviar</button>
+      </label>
+    </form>
   );
 }
 

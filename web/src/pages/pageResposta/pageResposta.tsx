@@ -6,6 +6,7 @@ import Answers from "../../components/events/answer/answer"
 import Question from "../../components/events/question/question";
 import AnswerField from "../../components/Layout/answerField/answersField"
 import api from "../../services/api"
+import "./styles.css"
 import '../../Css/Styles.css'
 import Logo from "../../components/Layout/Logo";
 import { useAuth } from "../../hooks";
@@ -13,7 +14,7 @@ import { useAuth } from "../../hooks";
 interface Answer {
     id: number;
     userId: number;
-    user: { id:number, name: string };
+    user: { id: number, name: string };
     answer: string;
     best: boolean;
     avaliation: number
@@ -23,7 +24,7 @@ interface Answer {
 interface Question {
     Answer: Answer[];
     id: number;
-    user: { id:number, name: string };
+    user: { id: number, name: string };
     userId: number;
     question: string;
     resolved: boolean;
@@ -51,18 +52,20 @@ export function RespostaCampo() {
             <header id='HomeHeader'>
                 <Logo />
             </header>
+            <div id='info'>
+                <QuestionViwer
+                    id={question?.id}
+                    question={question?.question}
+                    creatAt={question?.creatAt}
+                    user={question?.user}
+                    resolved={question?.resolved}
+                    logado={logado}
+                />
 
-            <QuestionViwer 
-            id={question?.id}
-            question={question?.question}
-            creatAt={question?.creatAt}
-            user={question?.user}
-            resolved={question?.resolved}
-            logado={logado}
-            />
-            
-            <AnswerField id={idt} />
-            
+                {/* <AnswerField id={idt} /> */}
+            </div>
+
+
             <div>
                 {question?.Answer?.map(answer => {
 

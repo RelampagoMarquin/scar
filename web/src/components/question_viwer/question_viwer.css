@@ -1,0 +1,13 @@
+#container_question_viwer{
+    display: block;
+}
+#infield_question_viewer{
+    border-radius: 5px;
+}
+#question_viwer_header{
+    display: flex;
+    justify-content: space-between;
+}
+#resolved{
+    text-align: right;
+}
