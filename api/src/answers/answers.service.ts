@@ -45,8 +45,27 @@ export class AnswersService {
   }
 
   async best(id: number) {
-    const answer = await this.findOne(id)
+    const answer = await this.prisma.answers.findFirst({
+      where:{id}
+    })
     const best = answer.best
+    const otherAnswer = await this.prisma.answers.findFirst({
+      where: {
+        questionId: Number(answer.questionId),
+        best: true,
+        NOT: {
+          id: Number(answer.id)
+        }
+      }
+    })
+    if(otherAnswer){
+      await this.prisma.answers.update({
+        where: { id: Number(otherAnswer.id) },
+        data: {
+          best: false
+        }
+      });
+    }
     if (best){
       return this.prisma.answers.update({
         where: { id },
