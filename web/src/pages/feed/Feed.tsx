@@ -9,7 +9,7 @@ import QuestionField from '../../components/Layout/questionField/QuestionField'
 import { useAuth } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
 
-interface Question {
+export interface Question{
     id: number;
     user: string;
     question: string;
@@ -18,20 +18,23 @@ interface Question {
     typeName: string;
 }
 
-
-
-
 export function Feed() {
     const [questions, setQuestions] = useState<Question[]>([])
     const { logout } = useAuth();
     const navigate = useNavigate();
+    const auth = useAuth();
+    const token = auth.token
 
     useEffect(() => {
-        api.get('/questions').then(response => {
-            const data = response.data
+        api.get('/questions', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }).then(response => {
+            const data = response.data 
             setQuestions(data);
         }).catch(error => {
-            console.log(error);
+            alert('ERRO AO ENCONTRAR RESPOSTAS')
         });
     }, [])
     function handleLogout() {
@@ -59,13 +62,14 @@ export function Feed() {
 
                     {questions.map(question => {
 
-                        return (
+                        return ( 
                             <Question
                                 key={question.id}
                                 user={question.user}
                                 question={question.question}
                                 materia={question.typeName}
                                 resolved={question.resolved}
+                                id={question.id} 
                             />
                         )
                     })}

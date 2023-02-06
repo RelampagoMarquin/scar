@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import "./question.css"
 
 interface QuestionProps {
@@ -5,12 +6,13 @@ interface QuestionProps {
     resolved: boolean,
     user: string,
     materia: string,
-}
+    id: number,
+} 
 
 function Question(props: QuestionProps) {
     return (
         <div className="background">
-            <div className="infield">
+            <div className="infield infield-feed">
                 <div className="header_question">
                     <p>{props.user}</p>
                     <span id='tag'>{props.materia}
@@ -21,12 +23,12 @@ function Question(props: QuestionProps) {
                 </div>
                 <div className="footer_question">
                     <p>Ver mais...</p>
-                    <button type="submit" id='responder'>Responder</button>
+                    <Link to={`/question/${props.id}`}>Responder</Link>
                 </div>
                 
-            </div>
+            </div> 
         </div>
     )
-}
+} 
 
 export default Question

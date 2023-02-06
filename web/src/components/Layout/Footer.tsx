@@ -1,16 +1,19 @@
+import { Link } from "react-router-dom"
+import Sobre from "../../pages/sobre/sobre"
+
 function Rodape() {
     return (
         <div id='footerElement'>
             <nav>
                 <ul>
                     <li>
-                        Sobre
+                        <Link to='/Sobre' >Sobre</Link>
                     </li>
                     <li>
-                        Ajuda
+                        <Link to='/ajuda'>Ajuda</Link>
                     </li>
                     <li>
-                        Redes Sociais
+                        <Link to='/redes'>Redes Sociais</Link>
                     </li>
                 </ul>
             </nav>

@@ -14,11 +14,18 @@ import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 import { 
   ApiCreatedResponse, 
   ApiOkResponse, 
+  ApiSecurity, 
   ApiTags 
 } from '@nestjs/swagger';
 import { FavoriteEntity } from './entities/favorite.entity';
+import { ClassSerializerInterceptor } from '@nestjs/common/serializer';
 import { yupCreateFavoritesInput } from 'src/yup/favorites';
+import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
+@ApiSecurity('access-key')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('favorites')
 @ApiTags('favorites')
 export class FavoritesController {

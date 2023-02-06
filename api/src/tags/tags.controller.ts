@@ -13,11 +13,17 @@ import { CreateTagDto } from './dto/create-tag.dto';
 import { UpdateTagDto } from './dto/update-tag.dto';
 import { 
   ApiCreatedResponse, 
-  ApiOkResponse, ApiTags 
+  ApiOkResponse, ApiSecurity, ApiTags 
 } from '@nestjs/swagger';
 import { TagEntity } from './entities/tag.entity';
 import { yupCreateTagsInput } from 'src/yup/tags';
+import { ClassSerializerInterceptor } from '@nestjs/common/serializer';
+import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
+@ApiSecurity('access-key')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('tags')
 @ApiTags('tags')
 export class TagsController {

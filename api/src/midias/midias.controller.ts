@@ -11,10 +11,16 @@ import {
 import { MidiasService } from './midias.service';
 import { CreateMidiaDto } from './dto/create-midia.dto';
 import { UpdateMidiaDto } from './dto/update-midia.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { MidiaEntity } from './entities/midia.entity';
 import { yupCreateMidiasInput } from 'src/yup/midias';
+import { ClassSerializerInterceptor } from '@nestjs/common/serializer';
+import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
+@ApiSecurity('access-key')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('midias')
 @ApiTags("midias")
 export class MidiasController {

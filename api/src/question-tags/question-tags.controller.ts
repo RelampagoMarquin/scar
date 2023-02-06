@@ -14,11 +14,19 @@ import { UpdateQuestionTagDto } from './dto/update-question-tag.dto';
 import { 
   ApiCreatedResponse, 
   ApiOkResponse, 
+  ApiSecurity, 
   ApiTags 
 } from '@nestjs/swagger';
 import { QuestionTagEntity } from './entities/question-tag.entity';
 import { yupCreateQuestionTagsInput } from 'src/yup/questionTags';
+import { ClassSerializerInterceptor } from '@nestjs/common/serializer';
+import { UseGuards, UseInterceptors } from '@nestjs/common/decorators';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+
+@UseGuards(JwtAuthGuard)
+@ApiSecurity('access-key')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('question-tags')
 @ApiTags('questionTags')
 export class QuestionTagsController {

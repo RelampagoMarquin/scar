@@ -7,7 +7,6 @@ import { useAuth } from '../hooks'
 import NewOpt from '../components/estateHome/estateHome'
 
 
-
 export function Home() {
     const logado = useAuth();
 

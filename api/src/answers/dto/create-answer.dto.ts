@@ -12,7 +12,7 @@ export class CreateAnswerDto {
     avaliation?: number = 0;
 
     @ApiProperty()
-    questionId: number;
+    questionId: number = 0;
 
     @ApiProperty()
     userId: number;

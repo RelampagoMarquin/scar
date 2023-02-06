@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
@@ -9,13 +9,13 @@ export class QuestionsService {
 
   async create(createQuestionDto: CreateQuestionDto) {
     const DtoReturn = new CreateQuestionDto()
-    const question = await this.prisma.questions.create({ 
-      data: 
-      { 
+    const question = await this.prisma.questions.create({
+      data:
+      {
         question: createQuestionDto.question,
         userId: createQuestionDto.userId
-       }
-      });
+      }
+    });
     const questiontags = await this.prisma.questiontags.create({
       data: {
         questionId: question.id,
@@ -56,9 +56,9 @@ export class QuestionsService {
         creatAt: 'desc'
       },
     });
-    const quests = questions.map(({user: { name:user }, id,
-      question, creatAt, resolved, 
-      Questiontags:[{tag:{type:{name:typeName}}}]}) => 
+    const quests = questions.map(({ user: { name: user }, id,
+      question, creatAt, resolved,
+      Questiontags: [{ tag: { type: { name: typeName } } }] }) =>
       ({ id, user, question, resolved, creatAt, typeName }));
     return quests
   }
@@ -69,6 +69,7 @@ export class QuestionsService {
       include: {
         user: {
           select: {
+            id: true,
             name: true
           }
         },
@@ -81,6 +82,7 @@ export class QuestionsService {
           include: {
             user: {
               select: {
+                id: true,
                 name: true
               }
             },
@@ -89,7 +91,11 @@ export class QuestionsService {
                 url: true
               }
             },
-          }
+          },
+          orderBy: [
+            { best: 'desc' },
+            { avaliation: 'desc' }
+          ],
         }
       }
     });
@@ -100,6 +106,31 @@ export class QuestionsService {
       where: { id },
       data: updateQuestionDto,
     });
+  }
+
+  async solved(id: number) {
+    const question = await this.findOne(id)
+    if (question) {
+      if (question.resolved) {
+        return this.prisma.questions.update({
+          where: { id },
+          data: {
+            resolved: false
+          }
+        });
+      }
+      else {
+        return this.prisma.questions.update({
+          where: { id },
+          data: {
+            resolved: true
+          }
+        });
+      }
+    }
+    else{
+      throw new BadRequestException('Question não existe')
+    }
   }
 
   async remove(id: number) {

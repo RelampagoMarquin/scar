@@ -22,14 +22,12 @@ export function handleLogin() {
         // para facilitar na criação de label para exibir o erro
         const registration = String(data.registration)
         const password = String(data.password)
-        console.log(registration)
         if (!registration || !password) {
             alert('Preencha todos os campos')
             return;
         }
         try {
-            const a = await authenticate(registration, password);
-            console.log(a)
+            await authenticate(registration, password);
             alert('Login feito com sucesso')
             navigate('/feed');
         } catch (erro) {

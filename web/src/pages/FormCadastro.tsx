@@ -10,6 +10,7 @@ import {
     useNavigate,
 } from 'react-router-dom'
 import { baseURL } from "../variables/baseUrl";
+import api from "../services/api";
 
 interface User {
     name: string;
@@ -29,7 +30,7 @@ export function handleCadastro() {
             return
         }
         try {
-            axios.post(`${baseURL}/users`, {
+            api.post(`/users`, {
                 "name": data.name,
                 "registration": data.registration,
                 "email": data.email,

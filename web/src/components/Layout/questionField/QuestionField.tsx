@@ -5,17 +5,22 @@ import './styles.css'
 
 interface Tag {
   id: number;
-  name: string;
+  name: string; 
 }
 
 export function QuestionField() {
   const [tags, setTags] = useState<Tag[]>([])
-  const [userId, setUserId] = useState<number>()
-  const auth = useAuth().user?.id
+  const auth = useAuth()
+  const token = auth.token
+  const authid = useAuth().user?.id
 
 
   useEffect(() => {
-    api.get('/tags').then(response => {
+    api.get('/tags', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(response => {
       setTags(response.data)
     })
   }, [])
@@ -24,15 +29,19 @@ export function QuestionField() {
     const formData = new FormData(event.target as HTMLFormElement)
 
     const data = Object.fromEntries(formData)
-
     if (!data.question) {
       return
     }
     try {
       api.post('/questions', {
         "question": data.question,
-        "userId": auth,
+        "userId": authid,
         "tagId": Number(data.tag)
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }).then(response => {
         alert('Pergunta cadastrada com sucesso')
       }).catch(response => {
@@ -52,17 +61,18 @@ export function QuestionField() {
           <textarea className='campoformulario' name="question" placeholder="Faça sua pergunta aqui" required />
         </label>
         <div id='undertextarea'>
-          <label htmlFor="tag"><select
-            name='tag'
-            id="tag"
-          >
-            <option disabled defaultValue="" value="">Categorias</option>
-            {tags.map(tag => {
-              return <option key={tag.id} value={tag.id}>{tag.name}</option>
-            })}
-          </select>
+          <label htmlFor="tag">
+            <select
+              name='tag'
+              id="tag"
+            >
+              <option disabled defaultValue="" value="">Categorias</option>
+              {tags.map(tag => {
+                return <option key={tag.id} value={tag.id}>{tag.name}</option>
+              })}
+            </select>
           </label>
-          
+
           <button type="submit" className="submitquestion">Enviar</button>
         </div>
 
