@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
-import Sobre from "../../pages/sobre/sobre"
 
 function Rodape() {
     return (
-        <div id='footerElement'>
+        <div>
             <nav>
                 <ul>
                     <li>

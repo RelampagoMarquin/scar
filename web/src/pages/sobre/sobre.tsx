@@ -1,4 +1,4 @@
-import Logo from "../../components/Layout/Logo"
+import Logo from "../../components/Layout/logo/Logo"
 
 export function Sobre() {
 

@@ -1,14 +1,11 @@
 
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
-import QuestionViwer from "../../components/question_viwer";
-import Answers from "../../components/events/answer/answer"
-import Question from "../../components/events/question/question";
-import AnswerField from "../../components/Layout/answerField/answersField"
+import { useNavigate, useParams } from "react-router-dom";
+import QuestionViwer from "../../components/question_viwer/questionViwer";
+import Answers from "../../components/events/answer"
+import Question from "../../components/events/question";
 import api from "../../services/api"
-import "./styles.css"
-import '../../Css/Styles.css'
-import Logo from "../../components/Layout/Logo";
+import Logo from "../../components/Layout/logo/Logo";
 import { useAuth } from "../../hooks";
 
 interface Answer {
@@ -36,6 +33,8 @@ interface Question {
 export function RespostaCampo() {
     const [question, setQuestion] = useState<Question>()
     const { id } = useParams()
+    const { logout } = useAuth();
+    const navigate = useNavigate();
     const auth = useAuth()
     const token = auth.token
     const logado = auth.user?.id
@@ -51,12 +50,23 @@ export function RespostaCampo() {
         })
     }, [])
 
+    function handleLogout() {
+        logout()
+        navigate('/login');
+    }
+
     return (
         <section>
-            <header id='HomeHeader'>
+            <header className='bg-primary f-padding'>
                 <Logo />
+                <nav>
+                    <ul>
+                        <li><a onClick={handleLogout} id='logout'>Sair</a></li>
+                    </ul>
+                </nav>
             </header>
-            <div id='info'>
+            <div id='info'> 
+            <h2>Pergunta</h2>
                 <QuestionViwer
                     id={question?.id}
                     question={question?.question}
@@ -67,11 +77,9 @@ export function RespostaCampo() {
                     token={token}
                 />
             </div>
-
-
+        <h2>Respostas</h2>
             <div>
                 {question?.Answer?.map(answer => {
-
                     return (
                         <Answers
                             key={answer.id}
@@ -86,7 +94,6 @@ export function RespostaCampo() {
                         />
                     )
                 })}
-
             </div>
         </section>
 

@@ -15,7 +15,7 @@ export function NewOpt() {
         <nav>
             <ul id='navList'>
                 <li><Link to='/Feed'>Feed</Link></li>
-                <li><Link to='/Login' onClick={handleLogout}>Sair</Link>
+                <li id='logout'><Link to='/Login' onClick={handleLogout}>Sair</Link>
                 </li>              
             </ul>
         </nav>

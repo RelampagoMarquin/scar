@@ -1,12 +1,9 @@
-
-import Logo from '../../components/Layout/Logo'
-import '../../Css/Styles.css'
-import '../feed/feed.css'
-import Question from '../../components/events/question/question'
+import Logo from '../components/Layout/logo/Logo'
+import Question from '../components/events/question'
 import { useEffect, useState } from 'react'
-import api from '../../services/api'
-import QuestionField from '../../components/Layout/questionField/QuestionField'
-import { useAuth } from '../../hooks'
+import api from '../services/api'
+import QuestionField from '../components/Layout/questionField/QuestionField'
+import { useAuth } from '../hooks'
 import { useNavigate } from 'react-router-dom'
 
 export interface Question{
@@ -42,26 +39,29 @@ export function Feed() {
         navigate('/login');
     }
     return (
-        <div id='containerFeed'>
-            <header id='InicioHeader'>
+        <div>
+            <header className='bg-primary f-padding'>
                 <Logo />
                 {
                     //isso não faz pequisa ainda
                 }
-                <div>
-                    <div id='inicio'>
-                        <input className='search' name="search" type='search' placeholder="Pesquise já!" id='search' />
+                {/* <div id='lbl-search'>
+                    <div>
+                        <input id='search' name="search" type='search' placeholder="Pesquise já!" />
                     </div>
-                    <button className='button-seach'><img id='botaopesquisa' /></button>
-                </div>
-                <a onClick={handleLogout} id='logout'>Sair</a>
+                    <button className='bg-green'>Pesquisar</button>
+                </div> */}
+                <nav>
+                    <ul>
+                        <li><a onClick={handleLogout} id='logout'>Sair</a></li>
+                    </ul>
+                </nav>
             </header>
             <main id='MainInicioContainer'>
                 <QuestionField />
+                <h2 id='titleFeed'>Perguntas</h2>
                 <div>
-
                     {questions.map(question => {
-
                         return ( 
                             <Question
                                 key={question.id}

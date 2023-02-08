@@ -1,11 +1,10 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useAuth } from '../../../hooks';
 import api from '../../../services/api';
-import './styles.css'
 
 interface Tag {
   id: number;
-  name: string; 
+  name: string;
 }
 
 export function QuestionField() {
@@ -38,15 +37,15 @@ export function QuestionField() {
         "userId": authid,
         "tagId": Number(data.tag)
       },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then(response => {
-        alert('Pergunta cadastrada com sucesso')
-      }).catch(response => {
-        alert('Erro ao cadastrar pergunta')
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then(response => {
+          alert('Pergunta cadastrada com sucesso')
+        }).catch(response => {
+          alert('Erro ao cadastrar pergunta')
+        })
     } catch (error) {
       console.log(error)
       alert('erro ao cadastrar')
@@ -55,26 +54,25 @@ export function QuestionField() {
   }
 
   return (
-    <div className='background'>
-      <form onSubmit={handleQuestion}>
-        <label>
-          <textarea className='campoformulario' name="question" placeholder="Faça sua pergunta aqui" required />
-        </label>
-        <div id='undertextarea'>
-          <label htmlFor="tag">
+    <div>
+      <form onSubmit={handleQuestion} className='bg-primary form-question'>
+        <label id='lbl-question'>
+          <textarea className='bg-secondary' name="question" placeholder="Faça sua pergunta aqui" required />
+          <div>
             <select
               name='tag'
               id="tag"
-            >
+              className='bg-primary'>
               <option disabled defaultValue="" value="">Categorias</option>
               {tags.map(tag => {
                 return <option key={tag.id} value={tag.id}>{tag.name}</option>
               })}
             </select>
-          </label>
 
-          <button type="submit" className="submitquestion">Enviar</button>
-        </div>
+            <button type="submit" className='bg-green'>Enviar</button>
+          </div>
+
+        </label>
 
       </form>
     </div>

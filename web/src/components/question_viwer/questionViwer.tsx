@@ -1,9 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../../hooks';
 import api from '../../services/api';
-import '../events/question/question.css'
 import AnswerField from '../Layout/answerField/answersField';
-import './question_viwer.css'
+
 
 interface propsQuestion {
     id: number | undefined;
@@ -37,24 +35,20 @@ export function QuestionViwer(props: propsQuestion) {
     }
 
     return (
-        <div className="background question_viwer">
-
-            <div id='container_question_viwer' className="infield">
-
-
-                <p id='question_viwer_header'><span>Feito por: {props.user?.name}</span><span id='resolved'>
-                    {props.logado == props.user?.id ? <button onClick={handleSolved}>Resolvido</button> : null}
-
+        <div className="bg-primary form-question f-padding">
+            <div className=" bg-secondary f-padding infield">
+                <p id='questionV_header'><span>Feito por: {props.user?.name}</span><span id='resolved'>
+                    {props.logado == props.user?.id ? <button onClick={handleSolved} className='bg-green'>Resolvido</button> : null}
                 </span></p>
-                <div id='infield_question_viewer' className='question'>
+                <div className='bg-terciary text-question f-padding'>
                     <p>{props.resolved ? <p>Resolvido -</p> : null}{props.question}</p>
                 </div>
-                <small>{props.creatAt?.toString()}</small>
+                <small id='createTime'>{props.creatAt?.toString()}</small>
+                <div>
+                    <AnswerField id={idt} />
+                </div>
             </div>
 
-            <div>
-                <AnswerField id={idt} />
-            </div>
         </div>
     )
 }

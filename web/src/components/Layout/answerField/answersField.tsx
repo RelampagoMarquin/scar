@@ -1,8 +1,7 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import { useAuth } from '../../../hooks';
 import api from '../../../services/api';
-import Question from '../../events/question/question';
-import './styles.css'
+
 
 interface idprops {
   id: number
@@ -44,10 +43,12 @@ export function AnswerField(props: idprops) {
   return (
 
     <form onSubmit={handleAnswer}>
-      <label id='answer-textlbl'>
-        <textarea className='campoResposta' name="answer" id='lbl-textarea' required/>
-        <button type="submit" id='inside-btn'>Enviar</button>
+      <label id='lbl-answer' className='bg-terciary'>
+        <textarea className='bg-terciary' name="answer"
+        placeholder='Responder' id='text-area-answer' required/>
+        <button type="submit" className='bg-green'>Enviar</button>
       </label>
+      
     </form>
   );
 }

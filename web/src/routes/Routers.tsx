@@ -1,10 +1,9 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cadastro from '../pages/FormCadastro'
 import Login from '../pages/FormLogin'
 import Home from '../pages/Home'
-import { Feed } from '../pages/feed/Feed'
-import { ProtectedLayout } from '../components/ProtectedLayout';
+import { Feed } from '../pages/Feed'
+import { ProtectedLayout } from '../components/ProtectedLayout/protectedLayout';
 import RespostaCampo from '../pages/pageResposta/pageResposta';
 import Sobre from '../pages/sobre/sobre';
 import { Ajuda } from '../pages/ajuda/ajuda';
