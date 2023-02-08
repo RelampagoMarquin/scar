@@ -112,7 +112,7 @@ form{
 .form-question > label{
   display: flex;
   flex-direction: column;
-}
+} 
 .form-question > label > div{
   width: calc(100% - 20px);
   display: flex;
