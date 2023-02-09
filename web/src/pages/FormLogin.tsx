@@ -1,15 +1,11 @@
-import React, { Component, FormEvent, useContext, useEffect, useReducer, useState, useSyncExternalStore } from "react";
+import { FormEvent } from "react";
 import { useNavigate } from 'react-router-dom';
-import '../Css/Forms.css';
-import axios from "axios";
-import Logo from '../components/Layout/Logo'
+import Logo from '../components/Layout/logo/Logo'
 import {
     BrowserRouter as Router,
     Link,
 } from 'react-router-dom'
-import api from "../services/api";
 import { useAuth } from "../hooks";
-
 
 export function handleLogin() {
     const navigate = useNavigate();
@@ -37,25 +33,26 @@ export function handleLogin() {
     }
 
     return (
-        <div>
-            <main>
+        <div className="bg-form">
                 <div>
-                    <Logo />
-                    <p>Faça seu login</p>
+                    <Logo/>
+                    <h2>Entre agora mesmo!</h2>
                 </div>
                 <form onSubmit={Login}>
                     <label>
                         <p>Matricula:</p>
-                        <input className='campoformulario' name="registration" type='text' placeholder="exemplo: 202010610800" required />
+                        <input name="registration" type='text' placeholder="exemplo: 202010610800" required />
                     </label>
                     <label>
                         <p>Senha:</p>
-                        <input className='campoformulario' name="password" type='password' placeholder="***********" required />
+                        <input name="password" type='password' placeholder="***********" required />
                     </label>
-                    <button type="submit" className="submitformbutton">Logar</button>
+                    <label>
+                        <button type="submit" className="bg-green">Logar</button>
+                    </label>
+                    
                 </form>
                 <Link to='/Cadastro'>Ainda não possui uma conta? Crie uma!</Link>
-            </main>
         </div>
     )
 }

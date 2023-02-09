@@ -2,7 +2,7 @@ import {
     BrowserRouter as Router,
     Link,
   } from 'react-router-dom'
-import '../../Css/Styles.css'
+
 
 
 export function Navbar(){

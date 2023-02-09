@@ -2,8 +2,9 @@ import {
     BrowserRouter as Router,
     Link,
   } from 'react-router-dom'
-import LogoIMG from '../../Img/ScarLogo1.svg'
-import '../../Css/Styles.css'
+import LogoIMG from '../../../Img/ScarLogo1.svg'
+import './logo.css'
+
 
 export function Logo(){
 

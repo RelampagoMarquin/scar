@@ -1,6 +1,7 @@
-import './Css/Styles.css'
 import { AuthProvider } from './contexts/AuthProvider'
 import RoutesApp from './routes/Routers'
+
+
 export function App() {
 
   return (

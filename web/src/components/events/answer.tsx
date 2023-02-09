@@ -1,8 +1,4 @@
-import { useEffect } from "react"
-import { useAuth } from "../../../hooks";
-import api from "../../../services/api";
-import './answer.css'
-
+import api from "../../services/api";
 
 interface AnswerProps {
   id: number;
@@ -47,7 +43,7 @@ function Answers(props: AnswerProps) {
 
   async function handleBest() {
     const id = props.id
-    api.patch(`/answers/best/${id}`,  {},{
+    api.patch(`/answers/best/${id}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -62,23 +58,24 @@ function Answers(props: AnswerProps) {
 
   return (
 
-    <div className="background back-ans">
-      <div className="infield">
-        <h3 className='up-down'>
-          <button onClick={handleUp} className='option'>ᐱ</button>
-          {props.avaliation}
-          <button onClick={handleDown} className='option'>ᐯ</button>
-        </h3>
-        <div className="inside">
-          <div className="header_answer">
+    <div className="bg-primary f-padding">
+      <div className="bg-secondary f-padding foreground container-ans">
+        <aside>
+          <h3 className='up-down'>
+            <button onClick={handleUp} className='upDown'>ᐱ</button>
+            {props.avaliation}
+            <button onClick={handleDown} className='upDown'>ᐯ</button>
+          </h3>
+        </aside>
+        <div>
+          <div>
             <span>{props.user.name}{props.best ? <span>👑</span> : null}</span>
-            <span>{props.logado == props.userQuestionID ? <button onClick={handleBest}>Amei!</button> : null}</span>
+            <span>{props.logado == props.userQuestionID ? <button onClick={handleBest} className='bg-green'>Amei!</button> : null}</span>
           </div>
-          <div className="answer">
+          <div className="bg-terciary f-padding infield">
             <p>{props.answer}</p>
           </div>
         </div>
-
       </div>
     </div>
   )
