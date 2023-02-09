@@ -27,7 +27,7 @@ export function Home() {
             <main id='MainHomeContainer'>
                 <div>
                     <p>Instituto Federal de Ciências e Técnologia</p>
-                    <h3 id='Title-h3'>Seja muito bem - vindo!</h3>
+                    <h3>Seja muito bem - vindo!</h3>
                     <h2 id='TitleWeb'>Faça já o seu cadastro ou o seu login para acessar nosso site!</h2>
                 </div>
                 <img src={Estudantes} id='HomeIMG' style={style} />

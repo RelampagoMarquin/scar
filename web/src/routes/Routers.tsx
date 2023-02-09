@@ -4,10 +4,10 @@ import Login from '../pages/FormLogin'
 import Home from '../pages/Home'
 import { Feed } from '../pages/Feed'
 import { ProtectedLayout } from '../components/ProtectedLayout/protectedLayout';
-import RespostaCampo from '../pages/pageResposta/pageResposta';
-import Sobre from '../pages/sobre/sobre';
-import { Ajuda } from '../pages/ajuda/ajuda';
-import Redes from '../pages/redes/redes';
+import RespostaCampo from '../pages/pageResposta';
+import Sobre from '../pages/about';
+import { Ajuda } from '../pages/help';
+import Redes from '../pages/redes';
 
 function RoutesApp() {
     return (

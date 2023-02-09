@@ -20,7 +20,9 @@ body{
   font-size: 1rem;
   letter-spacing: 1px;
   color: white;
+  
 }
+
 /* Header */
 
 header{
@@ -289,13 +291,12 @@ section{
   width: 80%;
   margin: 10px auto;
 }
-
 .bg-form input{
-  background-color: #3F3F46;
+  /* Por algum motivo os input type email e password não aceitam as formatações de background e color da fonte, então deixei padrão fundo branco com cor preta */
+  background-color: white;
   height: 1.6rem;
   border: none;
   border-radius: 5px;
-  color: white;
   width: 90%;
   padding: 15px;
 }
@@ -314,4 +315,141 @@ section{
   text-align: center;
   border-radius: 5px;
   margin: 10px 0;
+}
+#TitleWeb{
+  visibility: hidden;
+  display: none;
+}
+@media (min-width: 769px){
+  body{
+    max-width: max-content;
+    min-width: 769px;
+    width: 100%;
+    font-size: 1.1rem;
+  }
+  header{
+    width: 100vw;
+    height: 7rem;
+    align-items: center;
+    padding: 0 3rem !important;
+  }
+  .home > header li:first-child{
+    border-right: 3px solid #BEF264;
+    padding-right: 35px;
+  }
+  main{
+    width: 100vw;
+  }
+  footer{
+    width: 100vw;
+    padding: 1rem 3rem;
+  }
+  #MainHomeContainer{
+    padding: 2rem 5rem;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    
+  }
+  #MainHomeContainer p{
+    font-size: 0.98rem;
+    
+  }
+  #TitleMobile{
+    display: none;
+    visibility: collapse;
+  }
+  #TitleWeb{
+    display: contents;
+    visibility: visible;
+  }
+  .bg-form{
+    width: 100vw;
+    align-items: center;
+  }
+  .bg-form>form{
+    margin: 0 40px;
+  }
+  .bg-form label{
+    min-width: 22rem;
+    max-width: 30rem;
+    width: 90%;
+  }
+  .bg-form input,button{
+    font-size: 1.3rem;
+    height: 2.1rem;
+  }
+  #MainInicioContainer{
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  #MainInicioContainer a,span{
+    height: 2rem;
+  }
+  select{
+    font-size: 1.2rem;
+  }
+  textarea{
+    width: 100% !important;
+    max-width: none !important;
+    min-width: max-content;
+    height: 6rem;
+    width: 100%;
+  }
+  #lbl-question{
+    padding: 20px;
+  }
+  #lbl-question>div{
+    width: 100%;
+  }
+  section{
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  #info{
+    margin-top: 10px;
+  }
+  #lbl-answer{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 10px;
+    background-color: #363636;
+    padding: 0;
+  }
+  #text-area-answer{
+    padding: 20px !important;
+    font-size: 1.1rem;
+  }
+  div{
+    border-radius: 5px;
+  }
+  .protected-l{
+    width: 100vw;
+  }
+  .protected-l > *{
+    max-width: 800px;
+  }
+}
+@media (min-width: 1024px){
+  #MainHomeContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+  }
+  #MainHomeContainer>div{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    gap: 2rem;
+    background-color: #3F3F46;
+  }
+  #MainHomeContainer h3{
+    background-color: #1e1e1e;
+  }
+  footer{
+    height: 9rem;
+    position: fixed;
+    bottom: 0;
+  }
 }
