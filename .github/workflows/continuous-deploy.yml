@@ -22,4 +22,4 @@ jobs:
         REMOTE_HOST: "ec2-18-231-170-8.sa-east-1.compute.amazonaws.com"
         REMOTE_USER: ${{secrets.REMOTE_USER}}
         TARGET: "/home/ubuntu/app/"
-        EXCLUDE: "/dist/, /node_modules/, "
+        EXCLUDE: "/dist/, /node_modules/, /data/"
