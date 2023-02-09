@@ -1,32 +1,16 @@
 version: '3.8'
-
-networks:
-  api-database:
-    driver: bridge
-
 services:
-
-  database:
-    image: mysql:latest
-    container_name: scardatabase
-    networks:
-      - api-database
+  api:
+    image: node:16
+    working_dir: /app
+    volumes:
+      - ./api/:/app
+    command: sh -c "npm install && npx prisma migrate dev --name init && npm run start:dev"
     ports:
-      - "3307:3306"
+      - 3030:3030
+  db:
+    image: mysql:8
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-  
-  backend:
-    build: ./api/
-    networks:
-      - api-database
-    depends_on:
-      - database
+      MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3030:3030"
-  
-  frontend:
-    build: ./web/
-    ports:
-      - "5173:5173"
-    
+      - 3306:3306
