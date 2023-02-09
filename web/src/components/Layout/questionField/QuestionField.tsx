@@ -54,8 +54,8 @@ export function QuestionField() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleQuestion} className='bg-primary form-question'>
+    <div className='bg-primary'>
+      <form onSubmit={handleQuestion} className='form-question'>
         <label id='lbl-question'>
           <textarea className='bg-secondary' name="question" placeholder="Faça sua pergunta aqui" required />
           <div>
