@@ -10,6 +10,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "4.1"
+    "cypress": "^13.0.0"
+  },
+  "overrides": {
+    "qs": "^6.14.1",
+    "tmp": "^0.2.3",
+    "form-data": "^4.0.0",
+    "@cypress/request": "^3.0.10"
   }
 }
